@@ -310,7 +310,6 @@
      <None Include="Assets\VRTK\Scripts\Internal\Shaders\UIOverlay.shader" />
      <None Include="Assets\VRTK\Scripts\Internal\Shaders\VRTK_OutlineBasic.shader" />
      <None Include="Assets\VRTK\Scripts\Internal\Shaders\AdaptiveQualityDebugVisualization.shader" />
-     <None Include="Assets\LargeFileStream\Testing.txt" />
      <None Include="Assets\VRTK\Scripts\Internal\Shaders\TransparentFresnelBehind.shader" />
      <None Include="Assets\VRTK\Scripts\Internal\Shaders\Unlit_TransparentColor.shader" />
  <Reference Include="Unity.PackageManagerUI.Editor">
