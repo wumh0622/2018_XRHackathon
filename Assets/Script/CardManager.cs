@@ -59,7 +59,7 @@ public class CardManager : MonoBehaviour
 
 
     //取得卡牌整個資料
-    public GameObject GetCardData(CardName _name)
+    public void GetCardData(CardName _name, CardBase _base)
     {
         CardData data = null;
         DataBase.TryGetValue(_name, out data);
@@ -69,14 +69,11 @@ public class CardManager : MonoBehaviour
             {
                 DataBase[_name].cardAmount--;
                 //生成(位子旋轉自己改)
-                GameObject _obj = Instantiate(cardObj, transform.localPosition, Quaternion.identity);
-                CardBase cardScript = _obj.GetComponent<CardBase>();
-                cardScript.SetCardData(data);
-                return _obj;
+                //GameObject _obj = Instantiate(cardObj, transform.localPosition, Quaternion.identity);
+                _base.SetCardData(data);
+                //return _obj;
             }
-            return null;
         }
-        return null;
     }
     //取得卡牌功能
     public Action GetCardFunction(CardName _name)

@@ -53,10 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\AutoGrabObjectFix.cs" />
      <Compile Include="Assets\Script\AutoObjectGrabing.cs" />
      <Compile Include="Assets\Script\CardBase.cs" />
      <Compile Include="Assets\Script\CardManager.cs" />
      <Compile Include="Assets\Script\ShopItem.cs" />
+     <Compile Include="Assets\Script\VRCharacterControllerEvent.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

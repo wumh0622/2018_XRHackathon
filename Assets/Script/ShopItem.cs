@@ -14,9 +14,10 @@ public class ShopItem : VRTK.VRTK_InteractableObject
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
 	{
         base.StartUsing(currentUsingObject);
-        GameObject clone = CardManager.instance.GetCardData(cardToGet);
-        Debug.Log(currentUsingObject.name);
-        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = clone.GetComponent<VRTK_InteractableObject>();
+        //currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>()
+        CardBase card = currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab.GetComponent<CardBase>();
+        CardManager.instance.GetCardData(cardToGet, card);
+
     }
 
 }
