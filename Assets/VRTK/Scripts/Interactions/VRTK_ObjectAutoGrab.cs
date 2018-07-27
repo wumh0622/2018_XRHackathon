@@ -50,6 +50,11 @@ namespace VRTK
             }
         }
 
+        public void ActiveAutoGrab()
+        {
+            StartCoroutine(AutoGrab());
+        }
+
         /// <summary>
         /// The ClearPreviousClone method resets the previous cloned object to null to ensure when the script is re-enabled that a new cloned object is created, rather than the original clone being grabbed again.
         /// </summary>
