@@ -48,6 +48,8 @@ public class CardManager : MonoBehaviour
     public Dictionary<CardName, CardData> DataBase = new Dictionary<CardName, CardData>();
     public List<CardData> ShopData = new List<CardData>();
 
+    public GameObject cardObj;
+
     void Awake()
     {
         if (instance == null)
@@ -102,6 +104,11 @@ public class CardManager : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    public int GetCardAmount(CardName _name)
+    {
+        return DataBase[_name].cardAmount;
     }
 
     #region 功能數據
