@@ -13,6 +13,7 @@ public class CardBase : MonoBehaviour
     private CardManager.CardName cardName;
     private Image cardImage;
     private Text description;
+    private int money;
 
     private Action function;
     public Action Function1
@@ -30,8 +31,11 @@ public class CardBase : MonoBehaviour
     {
         cardSpecies = _data.cardSpecies;
         cardName = _data.cardName;
-/*         cardImage.sprite = _data.cardImage;
-        description.text = _data.description; */
+        if (cardImage != null)
+            cardImage.sprite = _data.cardImage;
+        if (description != null)
+            description.text = _data.description;
+        money = _data.needMoney;
     }
 
     //執行功能
@@ -39,5 +43,12 @@ public class CardBase : MonoBehaviour
     {
         Function1();
     }
-    
+
+    public void BuyThisCard()
+    {
+        //判斷是否有錢買
+        //扣除money
+        Card_Manager.BuyOneNewCard(cardName);
+        Destroy(gameObject);
+    }
 }

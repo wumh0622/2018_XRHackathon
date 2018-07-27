@@ -6,7 +6,6 @@ using System;
 public class CardManager : MonoBehaviour
 {
     public static CardManager instance;
-    public GameObject cardObj;
 
     [System.Serializable]
     public class CardData
@@ -47,7 +46,6 @@ public class CardManager : MonoBehaviour
 
     public List<CardData> myCardData = new List<CardData>();
     public Dictionary<CardName, CardData> DataBase = new Dictionary<CardName, CardData>();
-    [HideInInspector]
     public List<CardData> ShopData = new List<CardData>();
 
     void Awake()
@@ -64,12 +62,11 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < myCardData.Count; i++)
         {
-            DataBase.Add(myCardData[0].cardName, myCardData[0]);
-            if (myCardData[0].cardSpecies == CardSpecies.Commodity)
-                ShopData.Add(myCardData[0]);
+            DataBase.Add(myCardData[i].cardName, myCardData[i]);
+            if (myCardData[i].cardSpecies == CardSpecies.Commodity)
+                ShopData.Add(myCardData[i]);
         }
     }
-
 
     //取得卡牌整個資料
     public void GetCardData(CardName _name, CardBase _base)
