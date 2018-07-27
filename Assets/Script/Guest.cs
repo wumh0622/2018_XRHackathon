@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Guest : MonoBehaviour {
-    public NavMeshAgent nav;
+    private NavMeshAgent nav;
     [SerializeField] int TalkID;
     public GuestData mydata;
     public List<myAction> guestActions = new List<myAction>();
@@ -15,8 +15,14 @@ public class Guest : MonoBehaviour {
 		Request,
 		Talk
     }
-
-	void Update()
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        nav = GetComponent<NavMeshAgent>();
+    }
+    void Update()
 	{
 		if(Input.GetKeyDown("s"))
             GuestMove(Vector3.zero);
