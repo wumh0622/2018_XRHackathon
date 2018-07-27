@@ -11,10 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2e07871f7cfc143817c80c5a723468, type: 3}
   m_Name: New Guest Data
   m_EditorClassIdentifier: 
-  Guest_Name: 0
+  Guest_Name: 1
   mytalks: []
-  myneeds: []
-  _level: 0
-  _sec: 
-  _id: 
-  IsRemove: 0
+  myneeds:
+  - _cardName: 0
+    Number: 0
+  - _cardName: 0
+    Number: 0
+  - _cardName: 0
+    Number: 0
+  - _cardName: 0
+    Number: 0
+  - _cardName: 0
+    Number: 0
+  _level: 1
+  _sec: 123
+  _id: 00
+  IsRemove: 1
