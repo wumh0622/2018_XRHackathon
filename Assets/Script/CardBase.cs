@@ -30,22 +30,15 @@ public class CardBase : MonoBehaviour
     {
         cardSpecies = _data.cardSpecies;
         cardName = _data.cardName;
-        cardImage.sprite = _data.cardImage;
-        description.text = _data.description;
+        if (cardImage != null)
+            cardImage.sprite = _data.cardImage;
+        if (description != null)
+            description.text = _data.description;
     }
 
     //執行功能
     public void StartFunction()
     {
         Function1();
-    }
-    
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            StartFunction();
-        }
-    }
+    }    
 }

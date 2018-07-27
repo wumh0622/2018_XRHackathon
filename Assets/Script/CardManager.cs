@@ -7,6 +7,7 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager instance;
     public GameObject cardObj;
+
     [System.Serializable]
     public class CardData
     {
@@ -16,10 +17,14 @@ public class CardManager : MonoBehaviour
         public CardName cardName;
         [Tooltip("此卡圖片")]
         public Sprite cardImage;
+        [Tooltip("購買金錢")]
+        public int needMoney;
         [Tooltip("此卡數量")]
         public int cardAmount;
         [Tooltip("此卡描述")]
         public string description;
+        [Tooltip("此卡述說的字句")]
+        public string cardText;
     }
 
     public enum CardSpecies
@@ -33,11 +38,17 @@ public class CardManager : MonoBehaviour
     public enum CardName
     {
         Null,
-        test
+        test1,
+        test2,
+        test3,
+        test4,
+        test5
     }
 
     public List<CardData> myCardData = new List<CardData>();
     public Dictionary<CardName, CardData> DataBase = new Dictionary<CardName, CardData>();
+    [HideInInspector]
+    public List<CardData> ShopData = new List<CardData>();
 
     void Awake()
     {
@@ -54,21 +65,14 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < myCardData.Count; i++)
         {
             DataBase.Add(myCardData[0].cardName, myCardData[0]);
+            if (myCardData[0].cardSpecies == CardSpecies.Commodity)
+                ShopData.Add(myCardData[0]);
         }
     }
 
-
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            GetCardData(CardName.test);
-        }
-    }
 
     //取得卡牌整個資料
-    public void GetCardData(CardName _name)
+    public GameObject GetCardData(CardName _name)
     {
         CardData data = null;
         DataBase.TryGetValue(_name, out data);
@@ -81,15 +85,26 @@ public class CardManager : MonoBehaviour
                 GameObject _obj = Instantiate(cardObj, transform.localPosition, Quaternion.identity);
                 CardBase cardScript = _obj.GetComponent<CardBase>();
                 cardScript.SetCardData(data);
+                return _obj;
             }
+            return null;
         }
+        return null;
     }
+
+    //購買後
+    public void BuyOneNewCard(CardName _name)
+    {
+        if (DataBase.ContainsKey(_name))
+            DataBase[_name].cardAmount++;        
+    }
+
     //取得卡牌功能
     public Action GetCardFunction(CardName _name)
     {
         switch (_name)
         {
-            case CardName.test:
+            case CardName.test1:
                 return Test;
             default:
                 return null;
