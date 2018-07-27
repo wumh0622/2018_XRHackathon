@@ -28,7 +28,7 @@ public class GuestData_Editor : Editor
         {
             _guestData._level = EditorGUILayout.IntField("Level", _guestData._level);
             _guestData._sec = EditorGUILayout.TextField("輸入新增字句", _guestData._sec);
-            EditorGUILayout.LabelField("以新增字句的ID", _guestData._id.ToString());
+            EditorGUILayout.LabelField("已經新增字句的ID", _guestData._id.ToString());
 
             if (GUILayout.Button("新增"))
             {

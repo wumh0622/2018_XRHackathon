@@ -30,62 +30,79 @@ public class Guest : MonoBehaviour {
 
     }
     void Update()
-	{
-		if(Input.GetKeyDown("s"))
+    {
+        if (Input.GetKeyDown("s"))
             GuestMove(Vector3.zero);
-		if(Input.GetKeyDown("a"))
+        if (Input.GetKeyDown("t"))
             GuestAction(myAction.Talk);
+        if (Input.GetKeyDown("r"))
+            GuestAction(myAction.Request);
+
         Quaternion CharacterRot = Quaternion.identity;
         Vector3 tmpNextPos = nav.steeringTarget - transform.position;
-            tmpNextPos.y = transform.localPosition.y;
-            if (tmpNextPos != Vector3.zero)
-            {
-                CharacterRot = Quaternion.LookRotation(tmpNextPos);
-                //nextTargetRot.rotation = CharacterRot;
-                //MoveDir = nextTargetRot.forward;
-            }
+        tmpNextPos.y = transform.localPosition.y;
+        if (tmpNextPos != Vector3.zero)
+        {
+            CharacterRot = Quaternion.LookRotation(tmpNextPos);
+            //nextTargetRot.rotation = CharacterRot;
+            //MoveDir = nextTargetRot.forward;
+        }
 
-            Vector3 maxDisGap = nav.destination - transform.position;
-            float maxDis = maxDisGap.sqrMagnitude;
-            if (maxDis < Mathf.Pow(nav.stoppingDistance, 2))
-            {
+        Vector3 maxDisGap = nav.destination - transform.position;
+        float maxDis = maxDisGap.sqrMagnitude;
+        if (maxDis < Mathf.Pow(nav.stoppingDistance, 2))
+        {
             nav.Stop();
         }
-            else
-            {
-                transform.rotation = Quaternion.Lerp(transform.rotation, CharacterRot, nav.angularSpeed);
-            }
+        else
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, CharacterRot, nav.angularSpeed);
+        }
     }
 
     public void GuestMove(Vector3 _pos)
-	{
-		if(nav == null)
-		{
+    {
+        if (nav == null)
+        {
             Debug.LogWarning("You Dont Have NavMesh");
             return;
         }
         nav.SetDestination(_pos);
         isWalk = true;
     }
-
-	public void GuestAction(myAction _action)
-	{
-		switch (_action)
-		{
-			case myAction.Request:
-			{
-                    Debug.Log("I need ");
-            }break;
-			case myAction.Talk:
-			{
-                    Debug.Log("I Just Talk ");
-            }break;
+    int talkLevel = 0;
+    public void GuestAction(myAction _action)
+    {
+        switch (_action)
+        {
+            case myAction.Request:
+                {
+                    int ran = Random.Range(0, mydata.myneeds.Count);
+                    
+                    Debug.LogFormat("我要{0}，數量 : {1}", mydata.myneeds[ran]._cardName, mydata.myneeds[ran].Number);
+                }
+                break;
+            case myAction.Talk:
+                {
+                    if (talkLevel == 0)
+                    {
+                        int ran = Random.Range(0, mydata.mytalks[talkLevel].mysentences.Count);
+                        Debug.Log(mydata.mytalks[talkLevel].mysentences[ran]);
+                    }
+                    else
+                    {
+                        Debug.Log("要依照玩家回答做篩選");
+                    }
+                    
+                    talkLevel++;
+                }
+                break;
             default:
                 break;
         }
-	}
+    }
 
-	public void CompleteGuest(bool _Iscomplete)
+    public void CompleteGuest(bool _Iscomplete)
 	{
 		if(_Iscomplete)
 		{
