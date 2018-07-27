@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Guest : MonoBehaviour {
-    //[SerializeField] List<>
-
     public NavMeshAgent nav;
+    [SerializeField] int TalkID;
+    public GuestData mydata;
+    public List<myAction> guestActions = new List<myAction>();
+    //客人動作，買東西或談話
     public enum myAction
     {
         None,
 		Request,
 		Talk
     }
-	/// <summary>
-	/// Update is called every frame, if the MonoBehaviour is enabled.
-	/// </summary>
+
 	void Update()
 	{
 		if(Input.GetKeyDown("s"))
@@ -23,11 +23,12 @@ public class Guest : MonoBehaviour {
 		if(Input.GetKeyDown("a"))
             GuestAction(myAction.Talk);
     }
+
     public void GuestMove(Vector3 _pos)
 	{
 		if(nav == null)
 		{
-            Debug.LogWarning("NoNavMesh");
+            Debug.LogWarning("You Dont Have NavMesh");
             return;
         }
         nav.SetDestination(_pos);
@@ -54,11 +55,11 @@ public class Guest : MonoBehaviour {
 	{
 		if(_Iscomplete)
 		{
-
-		}
+            Debug.Log("完成");
+        }
 		else
 		{
-
+			Debug.Log("失敗");
 		}
 	}
 }

@@ -5,13 +5,21 @@ using UnityEngine;
 public class GuestManager : MonoBehaviour {
 
 	public static GuestManager instance;
-/// <summary>
-/// Awake is called when the script instance is being loaded.
-/// </summary>
+
+	public enum GuestName
+	{
+		None,
+		Allen
+	}
+
 	void Awake()
 	{
-		
+		if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
 	}
+
 	public void InstantiateGuest(){
 		
 	}
