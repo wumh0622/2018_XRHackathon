@@ -30,8 +30,8 @@ public class CardBase : MonoBehaviour
     {
         cardSpecies = _data.cardSpecies;
         cardName = _data.cardName;
-        cardImage.sprite = _data.cardImage;
-        description.text = _data.description;
+/*         cardImage.sprite = _data.cardImage;
+        description.text = _data.description; */
     }
 
     //執行功能
@@ -40,12 +40,4 @@ public class CardBase : MonoBehaviour
         Function1();
     }
     
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            StartFunction();
-        }
-    }
 }

@@ -58,17 +58,8 @@ public class CardManager : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            GetCardData(CardName.test);
-        }
-    }
-
     //取得卡牌整個資料
-    public void GetCardData(CardName _name)
+    public GameObject GetCardData(CardName _name)
     {
         CardData data = null;
         DataBase.TryGetValue(_name, out data);
@@ -81,8 +72,11 @@ public class CardManager : MonoBehaviour
                 GameObject _obj = Instantiate(cardObj, transform.localPosition, Quaternion.identity);
                 CardBase cardScript = _obj.GetComponent<CardBase>();
                 cardScript.SetCardData(data);
+                return _obj;
             }
+            return null;
         }
+        return null;
     }
     //取得卡牌功能
     public Action GetCardFunction(CardName _name)
