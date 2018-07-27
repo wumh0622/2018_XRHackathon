@@ -82,9 +82,8 @@ public class CardManager : MonoBehaviour
             {
                 DataBase[_name].cardAmount--;
                 //生成(位子旋轉自己改)
-                //GameObject _obj = Instantiate(cardObj, transform.localPosition, Quaternion.identity);
+               // 
                 _base.SetCardData(data);
-                //return _obj;
             }
         }
     }

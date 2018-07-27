@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\AutoGrabObjectFix.cs" />
      <Compile Include="Assets\Script\AutoObjectGrabing.cs" />
      <Compile Include="Assets\Script\CardBase.cs" />
      <Compile Include="Assets\Script\CardManager.cs" />
