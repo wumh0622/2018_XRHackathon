@@ -53,10 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameFlow.cs" />
      <Compile Include="Assets\Script\AutoObjectGrabing.cs" />
      <Compile Include="Assets\Script\CardBase.cs" />
      <Compile Include="Assets\Script\CardManager.cs" />
+     <Compile Include="Assets\Script\GameFlow.cs" />
      <Compile Include="Assets\Script\Guest.cs" />
      <Compile Include="Assets\Script\GuestData.cs" />
      <Compile Include="Assets\Script\GuestManager.cs" />

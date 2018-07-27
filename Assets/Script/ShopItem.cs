@@ -10,14 +10,12 @@ public class ShopItem : VRTK.VRTK_InteractableObject
     [SerializeField]CardManager.CardName cardToGet;
     GameObject cardPrefab;
 
-<<<<<<< HEAD
 
     void Start()
     {
         //cardPrefab = CardManager.instance.cardObj;
     }
-=======
->>>>>>> 2cb7ece2c2db9768981898439be1784a5ed6bd43
+
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
 	{
         base.StartUsing(currentUsingObject);

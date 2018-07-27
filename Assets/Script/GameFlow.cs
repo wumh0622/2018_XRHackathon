@@ -12,8 +12,10 @@ public class GameFlow : MonoBehaviour
 
     [SerializeField] int WaitingTime;
 
-    [SerializeField] GameObject[] guestArray;
-    int guestNum = 1;
+    [SerializeField] Guest[] guestArray;
+    int guestNum = 0;
+
+    [SerializeField] Transform guestWalkTarget;
 
 
     public enum GameState
@@ -41,7 +43,7 @@ public class GameFlow : MonoBehaviour
         //初始化
         money = 10;
         heart = 10;
-        guestNum = 1;
+        guestNum = 0;
 	}
 
     // Update is called once per frame
@@ -62,8 +64,18 @@ public class GameFlow : MonoBehaviour
                 break;
 
 			case GameState.GuestComing:
-            default:
-
+			if(guestArray[guestNum].isWalk == false)
+			{
+                guestArray[guestNum].GuestMove(guestWalkTarget.position);
+            }
+			else
+			{
+				if(guestArray[guestNum].FinishWalk() == true)
+				{
+                        currentState = GameState.GuestTime;
+                        Debug.Log("GameState.GuestTime");
+                    }
+			}
                 break;
         }
     }
