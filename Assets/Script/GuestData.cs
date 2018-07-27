@@ -43,12 +43,12 @@ public class GuestData : ScriptableObject
         }
     }
 	//in
-    public int _level;//要新增句子的level
-    public string _sec;//要新增的句子
+    public int _level = 0;//要新增句子的level
+    public string _sec = string.Empty;//要新增的句子
 
 	//out
-    public string _id;//拿來看的
-    public bool IsRemove;
+    public string _id = string.Empty;//拿來看的
+    public bool IsRemove = false;
     public void AddSentence()
     {
         SortID();

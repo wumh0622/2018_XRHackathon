@@ -12,7 +12,7 @@ public class ShopItem : VRTK.VRTK_InteractableObject
 
     void Start()
     {
-        cardPrefab = CardManager.instance.cardObj;
+        //cardPrefab = CardManager.instance.cardObj;
     }
 
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
