@@ -8,16 +8,25 @@ public class ShopItem : VRTK.VRTK_InteractableObject
 {
     [Space(50)]
     [SerializeField]CardManager.CardName cardToGet;
-
-    // Update is called once per frame
+    GameObject cardPrefab;
 
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
 	{
         base.StartUsing(currentUsingObject);
+        Debug.Log("StartUsing");
         //currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>()
-        CardBase card = currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab.GetComponent<CardBase>();
-        CardManager.instance.GetCardData(cardToGet, card);
-
+        //GameObject _obj = 
+        GameObject clone = Instantiate(cardPrefab, currentUsingObject.gameObject.transform.localPosition, Quaternion.identity);
+        CardManager.instance.GetCardData(cardToGet, clone.GetComponent<CardBase>());
+        clone.transform.position = currentUsingObject.gameObject.transform.position;
+        //currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().ClearPreviousClone();
+        currentUsingObject.gameObject.GetComponent<VRTK_InteractTouch>().ForceTouch(clone);
+        currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>().AttemptGrab();
+        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = clone.GetComponent<VRTK_InteractableObject>();
+        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+        
+        
     }
 
 }

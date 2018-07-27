@@ -65,6 +65,7 @@ namespace VRTK
 
         protected virtual void OnEnable()
         {
+            Debug.Log("OnEnable");
             //Must always clone if the object is a prefab
             if (objectIsPrefab)
             {

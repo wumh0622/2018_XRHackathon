@@ -18,7 +18,7 @@ public class VRCharacterControllerEvent : MonoBehaviour {
 	public void ResetAutoGrab(VRTK_ObjectAutoGrab autoGrab)
 	{
         Debug.Log("RE");
-        autoGrab.ClearPreviousClone();
-        autoGrab.enabled = false;
+        //autoGrab.ClearPreviousClone();
+        //autoGrab.enabled = false;
     }
 }
