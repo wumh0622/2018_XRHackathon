@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuestManager : MonoBehaviour {
+public class GuestManager : MonoBehaviour
+{
+    public static GuestManager instance;
+    [SerializeField] GameObject[] GuestPerfabs;
+    public enum GuestName
+    {
+        None,
+        Allen,
+		Test1,
+		Test2
+    }
 
-	public static GuestManager instance;
-
-	public enum GuestName
-	{
-		None,
-		Allen
-	}
-
-	void Awake()
-	{
-		if (instance == null)
+    void Awake()
+    {
+        if (instance == null)
             instance = this;
         else
             Destroy(this);
-	}
+    }
 
-	public void InstantiateGuest(){
-		
-	}
+    public void InstantiateGuest(int _Perfabsindex, Vector3 _pos, Quaternion _rot)
+    {
+        Instantiate(GuestPerfabs[_Perfabsindex], _pos, _rot);
+    }
 }

@@ -10,23 +10,54 @@ public class ShopItem : VRTK.VRTK_InteractableObject
     [SerializeField]CardManager.CardName cardToGet;
     GameObject cardPrefab;
 
+<<<<<<< HEAD
+=======
+    GameObject clone;
+
+    VRTK_InteractUse controller;
+
+
+    void Start()
+    {
+        cardPrefab = CardManager.instance.cardObj;
+    }
+
+    void Update()
+    {
+        if (controller != null && clone != null)
+        {
+            //currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().ClearPreviousClone();
+            Debug.Log(controller.gameObject.name);
+            controller.gameObject.GetComponent<VRTK_InteractTouch>().ForceTouch(clone);
+            /* currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>().AttemptGrab(); */
+            controller.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+            controller.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = clone.GetComponent<VRTK_InteractableObject>();
+            controller.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+            if(controller.gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null)
+            {
+                controller = null;
+                clone = null;
+            }
+        }
+    }
+
+>>>>>>> 1d2b6a5edd022da9e3586bfaab71db1bfaba4a10
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
 	{
         base.StartUsing(currentUsingObject);
         Debug.Log("StartUsing");
         //currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>()
         //GameObject _obj = 
-        GameObject clone = Instantiate(cardPrefab, currentUsingObject.gameObject.transform.localPosition, Quaternion.identity);
-        CardManager.instance.GetCardData(cardToGet, clone.GetComponent<CardBase>());
-        clone.transform.position = currentUsingObject.gameObject.transform.position;
-        //currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().ClearPreviousClone();
-        currentUsingObject.gameObject.GetComponent<VRTK_InteractTouch>().ForceTouch(clone);
-        currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>().AttemptGrab();
-        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
-        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = clone.GetComponent<VRTK_InteractableObject>();
-        currentUsingObject.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
-        
-        
+        if (CardManager.instance.GetCardAmount(cardToGet) > 0)
+        {
+            clone = Instantiate(cardPrefab, currentUsingObject.gameObject.transform.localPosition, Quaternion.identity);
+            CardManager.instance.GetCardData(cardToGet, clone.GetComponent<CardBase>());
+            clone.transform.position = currentUsingObject.gameObject.transform.position;
+            controller = currentUsingObject;
+        }
+
+
+
     }
 
 }
