@@ -3,22 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Guest : MonoBehaviour {
+public class Guest : MonoBehaviour
+{
     private NavMeshAgent nav;
-    [SerializeField] int TalkID;
     public GuestData mydata;
-    public List<myAction> guestActions = new List<myAction>();
+    public List<GuestManager.myAction> guestActions = new List<GuestManager.myAction>();
     public bool isWalk;
-    //客人動作，買東西或談話
-    public enum myAction
-    {
-        None,
-		Request,
-		Talk
-    }
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
+
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
@@ -27,17 +18,25 @@ public class Guest : MonoBehaviour {
     void Start()
     {
         nav.updateRotation = false;
-
     }
+    int _action = 0;
     void Update()
     {
-        if (Input.GetKeyDown("s"))
-            GuestMove(Vector3.zero);
         if (Input.GetKeyDown("t"))
-            GuestAction(myAction.Talk);
-        if (Input.GetKeyDown("r"))
-            GuestAction(myAction.Request);
-
+        {
+            if (_action < guestActions.Count)
+            {
+                GuestAction(guestActions[_action]);
+                _action++;
+            }
+            else
+            {
+                Debug.Log("超出範圍");
+            }
+        }
+        if (Input.GetKeyDown("p"))
+            OnPlayerResponse(CardManager.CardName.test2);
+        // /////////////////////
         Quaternion CharacterRot = Quaternion.identity;
         Vector3 tmpNextPos = nav.steeringTarget - transform.position;
         tmpNextPos.y = transform.localPosition.y;
@@ -70,55 +69,72 @@ public class Guest : MonoBehaviour {
         nav.SetDestination(_pos);
         isWalk = true;
     }
-    int talkLevel = 0;
-    public void GuestAction(myAction _action)
+
+    int talkLevel = 0;//用來選擇NPC對話組
+    CardManager.CardName currentCardName;//NPC要求產品
+    int needCardNumber;//NPC要求產品數量
+    public void GuestAction(GuestManager.myAction _action)
     {
         switch (_action)
         {
-            case myAction.Request:
+            case GuestManager.myAction.Request:
                 {
                     int ran = Random.Range(0, mydata.myneeds.Count);
-                    
+                    currentCardName = mydata.myneeds[ran]._cardName;
+                    needCardNumber = mydata.myneeds[ran].Number;
                     Debug.LogFormat("我要{0}，數量 : {1}", mydata.myneeds[ran]._cardName, mydata.myneeds[ran].Number);
                 }
                 break;
-            case myAction.Talk:
+            case GuestManager.myAction.Talk:
                 {
-                    if (talkLevel == 0)
+                    if (talkLevel < mydata.mytalks.Count)
                     {
-                        int ran = Random.Range(0, mydata.mytalks[talkLevel].mysentences.Count);
-                        Debug.Log(mydata.mytalks[talkLevel].mysentences[ran]);
+                        Debug.Log("Question : " + mydata.mytalks[talkLevel].questiom.sentence);
                     }
                     else
                     {
-                        Debug.Log("要依照玩家回答做篩選");
+                        Debug.Log("超出範圍");
                     }
-                    
-                    talkLevel++;
                 }
                 break;
             default:
                 break;
         }
     }
-
-    public void CompleteGuest(bool _Iscomplete)
-	{
-		if(_Iscomplete)
-		{
-            Debug.Log("完成");
+    //判斷買東西
+    public bool CompleteGuestNeed(CardManager.CardName _cardName, int _amount)
+    {
+        if (_cardName == currentCardName)
+        {
+            if (needCardNumber == _amount)
+            {
+                Debug.Log("完成");
+                return true;
+            }
+            else
+            {
+                Debug.Log("數量不夠");
+                return false;
+            }
         }
-		else
-		{
-			Debug.Log("失敗");
-		}
-	}
+        else
+        {
+            Debug.Log("失敗");
+            return false;
+        }      
+    }
+    //玩家回應NPC問候之後
+    public void OnPlayerResponse(CardManager.CardName _card)
+    {
+        Debug.Log("下一個level : " + mydata.mytalks[talkLevel].answers.Find(x => x.NeedToTrigger == _card).OpenLevel);
+        talkLevel = mydata.mytalks[talkLevel].answers.Find(x => x.NeedToTrigger == _card).OpenLevel;
+    }
 
     public bool FinishWalk()
     {
-        if(isWalk ==  true)
+        if (isWalk == true)
         {
-            if(nav.remainingDistance < nav.stoppingDistance)
+            if (nav.remainingDistance < nav.stoppingDistance)
             {
                 return true;
             }

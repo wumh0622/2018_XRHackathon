@@ -6,6 +6,7 @@ public class GuestManager : MonoBehaviour
 {
     public static GuestManager instance;
     [SerializeField] GameObject[] GuestPerfabs;
+
     public enum GuestName
     {
         None,
@@ -13,7 +14,14 @@ public class GuestManager : MonoBehaviour
 		Test1,
 		Test2
     }
-
+	//客人動作，買東西或談話
+    public enum myAction
+    {
+        None,
+		Request,
+		Talk
+    }
+	
     void Awake()
     {
         if (instance == null)
