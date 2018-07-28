@@ -109,7 +109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431633503704876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.703, y: 1.079, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.2, z: -0.01}
   m_Children:
   - {fileID: 224437669129726246}
@@ -295,7 +295,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u597D\u554A\u597D\u554A\uFF0C\u6539\u5929\u518D\u9EBB\u7169\u7389\u862D\u5B38\u5E6B\u6211\u4ECB\u7D39"
 --- !u!114 &114488313294164468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSpecies: 1
-  cardName: 5
+  cardName: 9
   nameText: {fileID: 114488313294164468}
   cardImage: {fileID: 114012006364183354}
   description: {fileID: 114476395514509664}

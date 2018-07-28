@@ -62,7 +62,9 @@ MonoBehaviour:
     - sentence: "\u54C8\u54C8\u54C8\uFF0C\u6316\u958B\u73A9\u7B11\u7684\u5566\uFF0C\u514D\u9019\u9EBC\u7DCA\u5F35\u3002\u90A3\u5C31\u5148\u9019\u6A23\u5B50\u9F41!\u6211\u6539\u5929\u6211\u518D\u4F86\u86E4!"
       OpenLevel: 0
       NeedToTrigger: 0c000000
-  myneeds: []
+  myneeds:
+  - _cardName: 1
+    Number: 1
   _level: 0
   _question:
     sentence: 

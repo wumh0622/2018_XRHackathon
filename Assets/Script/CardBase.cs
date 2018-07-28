@@ -39,7 +39,7 @@ public class CardBase : MonoBehaviour
         if (cardImage != null)
             cardImage.sprite = _data.cardImage;
         if (description != null)
-            description.text = _data.description;
+            description.text = _data.description + _data.cardText;
     }
 
     public void MyisExitCard()

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Script\CardBase.cs" />
      <Compile Include="Assets\Script\CardEvent.cs" />
      <Compile Include="Assets\Script\CardManager.cs" />
+     <Compile Include="Assets\Script\ComicSystem.cs" />
      <Compile Include="Assets\Script\DialogueText.cs" />
      <Compile Include="Assets\Script\GameFlow.cs" />
      <Compile Include="Assets\Script\Guest.cs" />
