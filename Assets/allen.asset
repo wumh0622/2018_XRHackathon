@@ -31,7 +31,7 @@ MonoBehaviour:
     answers: []
   - level: 2
     questiom:
-      sentence: MOYHERFUKER
+      sentence: 
       CardOpens: 
     answers: []
   myneeds:

@@ -9,6 +9,7 @@ public class Guest : MonoBehaviour
     public GuestData mydata;
     public List<GuestManager.myAction> guestActions = new List<GuestManager.myAction>();
     public bool isWalk;
+    int _actionInt = 0;
 
     void Awake()
     {
@@ -19,24 +20,9 @@ public class Guest : MonoBehaviour
     {
         nav.updateRotation = false;
     }
-    int _action = 0;
+    
     void Update()
     {
-        if (Input.GetKeyDown("t"))
-        {
-            if (_action < guestActions.Count)
-            {
-                GuestAction(guestActions[_action]);
-                _action++;
-            }
-            else
-            {
-                Debug.Log("超出範圍");
-            }
-        }
-        if (Input.GetKeyDown("p"))
-            OnPlayerResponse(CardManager.CardName.test2);
-        // /////////////////////
         Quaternion CharacterRot = Quaternion.identity;
         Vector3 tmpNextPos = nav.steeringTarget - transform.position;
         tmpNextPos.y = transform.localPosition.y;
@@ -71,11 +57,11 @@ public class Guest : MonoBehaviour
     }
 
     int talkLevel = 0;//用來選擇NPC對話組
-    CardManager.CardName currentCardName;//NPC要求產品
+    CardManager.CardName currentCardName;//NPC要求的產品
     int needCardNumber;//NPC要求產品數量
-    public void GuestAction(GuestManager.myAction _action)
+    void GuestAction(GuestManager.myAction _myaction)
     {
-        switch (_action)
+        switch (_myaction)
         {
             case GuestManager.myAction.Request:
                 {
@@ -100,8 +86,21 @@ public class Guest : MonoBehaviour
             default:
                 break;
         }
+
+        _actionInt++;
     }
-    //判斷買東西
+
+    public void GuestGoAction()
+    {
+        GuestAction(guestActions[_actionInt]);
+
+        if (_actionInt >= guestActions.Count)
+        {
+            Debug.Log("可離開，但要等玩家做完回應之後");
+        }
+    }
+
+    //玩家回應客人Request，結束玩家動作時做
     public bool CompleteGuestNeed(CardManager.CardName _cardName, int _amount)
     {
         if (_cardName == currentCardName)
@@ -113,7 +112,7 @@ public class Guest : MonoBehaviour
             }
             else
             {
-                Debug.Log("數量不夠");
+                Debug.Log("數量不夠，失敗");
                 return false;
             }
         }
@@ -123,7 +122,7 @@ public class Guest : MonoBehaviour
             return false;
         }      
     }
-    //玩家回應NPC問候之後
+    //玩家回應NPC Question用的
     public void OnPlayerResponse(CardManager.CardName _card)
     {
         Debug.Log("下一個level : " + mydata.mytalks[talkLevel].answers.Find(x => x.NeedToTrigger == _card).OpenLevel);
@@ -140,6 +139,11 @@ public class Guest : MonoBehaviour
             }
         }
         return false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        
     }
 }
 
