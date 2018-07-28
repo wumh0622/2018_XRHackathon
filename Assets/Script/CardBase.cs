@@ -17,6 +17,7 @@ public class CardBase : MonoBehaviour
     [SerializeField] Text description;
     private int money;
     private bool isCommodity;
+    public bool isUse;
 
     private Action function;
     public Action Function1
@@ -59,5 +60,15 @@ public class CardBase : MonoBehaviour
             Card_Manager.BuyOneNewCard(cardName);
             Destroy(gameObject);
         }
+    }
+
+    public void UseThisCard()
+    {
+        isUse = true;
+    }
+
+        public void UnUseThisCard()
+    {
+        isUse = false;
     }
 }

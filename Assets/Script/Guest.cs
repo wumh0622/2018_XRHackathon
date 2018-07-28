@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using VRTK;
 
 public class Guest : MonoBehaviour
 {
@@ -22,15 +23,11 @@ public class Guest : MonoBehaviour
         nav.updateRotation = false;
     }
     
-    void Update()
+    void Kill()
     {
-        if(isLeaving == true)
-        {
-            if(nav.remainingDistance < nav.stoppingDistance)
-            {
+
                 Destroy(gameObject);
-            }
-        }
+
     } 
 
     public void GuestMove(Vector3 _pos)
@@ -83,12 +80,15 @@ public class Guest : MonoBehaviour
 
     public void GuestGoAction()
     {
-        GuestAction(guestActions[_actionInt]);
 
-        if (_actionInt >= guestActions.Count)
+        if (_actionInt > guestActions.Count-1)
         {
-            GameFlow.instance.BackState();
+            GameFlow.instance.ToState(GameFlow.GameState.WaitingGuest);
             GuestLeaving();
+        }
+        else
+        {
+            GuestAction(guestActions[_actionInt]);
         }
     }
 
@@ -150,13 +150,14 @@ public class Guest : MonoBehaviour
                 _actionInt++;
                 GameFlow.instance.BackState();
             }
+            Destroy(other.gameObject);
         }
     }
 
     void GuestLeaving()
     {
         nav.SetDestination(GameFlow.instance.guestLeaveTarget.position);
-        isLeaving = true;
+        Invoke("Kill", 3);
     }
 }
 
