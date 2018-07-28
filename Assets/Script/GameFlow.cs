@@ -38,21 +38,21 @@ public class GameFlow : MonoBehaviour
     {
         Initial();
     }
-	void Initial()
-	{
+    void Initial()
+    {
         //初始化
         money = 10;
         heart = 10;
         guestNum = 0;
-	}
+    }
 
     // Update is called once per frame
     void Update()
     {
         switch (currentState)
         {
-			case GameState.Initial:
-				Initial();
+            case GameState.Initial:
+                Initial();
                 CardManager.instance.InitialDiaCard();
                 currentState = GameState.WaitingGuest;
                 break;
@@ -64,19 +64,24 @@ public class GameFlow : MonoBehaviour
                 }
                 break;
 
-			case GameState.GuestComing:
-			if(guestArray[guestNum].isWalk == false)
-			{
-                guestArray[guestNum].GuestMove(guestWalkTarget.position);
-            }
-			else
-			{
-				if(guestArray[guestNum].FinishWalk() == true)
-				{
+            case GameState.GuestComing:
+                if (guestArray[guestNum].isWalk == false)
+                {
+                    guestArray[guestNum].GuestMove(guestWalkTarget.position);
+                }
+                else
+                {
+                    if (guestArray[guestNum].FinishWalk() == true)
+                    {
                         currentState = GameState.GuestTime;
                         Debug.Log("GameState.GuestTime");
+                        currentState = GameState.PlayerTime;
                     }
-			}
+                }
+                break;
+
+            case GameState.PlayerTime:
+                
                 break;
         }
     }
