@@ -12,6 +12,7 @@ public class Guest : MonoBehaviour
     public List<GuestManager.myAction> guestActions = new List<GuestManager.myAction>();
     public bool isWalk;
     int _actionInt = 0;
+    bool isLeaving;
 
     private CardManager cardManager;
     private CardManager Card_Manager { get { if (cardManager == null) cardManager = CardManager.instance; return cardManager; } }
@@ -31,27 +32,14 @@ public class Guest : MonoBehaviour
     
     void Update()
     {
-        Quaternion CharacterRot = Quaternion.identity;
-        Vector3 tmpNextPos = nav.steeringTarget - transform.position;
-        tmpNextPos.y = transform.localPosition.y;
-        if (tmpNextPos != Vector3.zero)
+        if(isLeaving == true)
         {
-            CharacterRot = Quaternion.LookRotation(tmpNextPos);
-            //nextTargetRot.rotation = CharacterRot;
-            //MoveDir = nextTargetRot.forward;
+            if(nav.remainingDistance < nav.stoppingDistance)
+            {
+                Destroy(gameObject);
+            }
         }
-
-        Vector3 maxDisGap = nav.destination - transform.position;
-        float maxDis = maxDisGap.sqrMagnitude;
-        if (maxDis < Mathf.Pow(nav.stoppingDistance, 2))
-        {
-            nav.Stop();
-        }
-        else
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, CharacterRot, nav.angularSpeed);
-        }
-    }
+    } 
 
     public void GuestMove(Vector3 _pos)
     {
@@ -106,11 +94,14 @@ public class Guest : MonoBehaviour
                     }
                 }
                 break;
+            case GuestManager.myAction.Seller:
+                Shop.instance.OpenShopMenu();
+                break;
             default:
                 break;
         }
 
-        _actionInt++;
+        
     }
 
     public void GuestGoAction()
@@ -119,7 +110,8 @@ public class Guest : MonoBehaviour
 
         if (_actionInt >= guestActions.Count)
         {
-            Debug.Log("可離開，但要等玩家做完回應之後");
+            GameFlow.instance.BackState();
+            GuestLeaving();
         }
     }
 
@@ -183,7 +175,28 @@ public class Guest : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+        CardBase cardGet = other.GetComponent<CardBase>();
+        if(cardGet!=null)
+        {
+            if(guestActions[_actionInt] == GuestManager.myAction.Request)
+            {
+                CompleteGuestNeed(cardGet.cardName, 1);
+                _actionInt++;
+                GameFlow.instance.BackState();
+            }
+            else if(guestActions[_actionInt] == GuestManager.myAction.Talk)
+            {
+                OnPlayerResponse(cardGet.cardName);
+                _actionInt++;
+                GameFlow.instance.BackState();
+            }
+        }
+    }
+
+    void GuestLeaving()
+    {
+        nav.SetDestination(GameFlow.instance.guestLeaveTarget.position);
+        isLeaving = true;
     }
 }
 

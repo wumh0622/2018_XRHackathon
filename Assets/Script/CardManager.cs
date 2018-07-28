@@ -14,8 +14,10 @@ public class CardManager : MonoBehaviour
         public GuestManager.GuestName guestN;
         [Tooltip("此卡種類")]
         public CardSpecies cardSpecies;
-        [Tooltip("此卡名稱")]
+        [Tooltip("此卡數據鑰匙")]
         public CardName cardName;
+        [Tooltip("此卡名稱")]
+        public string cardNameText;
         [Tooltip("此卡圖片")]
         public Sprite cardImage;
         [Tooltip("購買金錢")]
@@ -39,6 +41,7 @@ public class CardManager : MonoBehaviour
     public enum CardName
     {
         Null,
+
         A1,
         A2,
         A3,
@@ -96,6 +99,14 @@ public class CardManager : MonoBehaviour
                 _base.SetCardData(data);
             }
         }
+    }
+
+    //取得單個數據
+    public CardData GetCorrectData(CardName _name)
+    {
+        CardData data = null;
+        DataBase.TryGetValue(_name, out data);
+        return data;
     }
 
     //購買後

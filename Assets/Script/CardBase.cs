@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
 
@@ -8,11 +6,15 @@ public class CardBase : MonoBehaviour
 {
     private CardManager cardManager;
     private CardManager Card_Manager { get { if (cardManager == null) cardManager = CardManager.instance; return cardManager; } }
+    private GameFlow gameFlow;
+    private GameFlow Game_Flow { get { if (gameFlow == null) gameFlow = GameFlow.instance; return gameFlow; } }
+
 
     public CardManager.CardSpecies cardSpecies;
-    private CardManager.CardName cardName;
-    private Image cardImage;
-    private Text description;
+    public CardManager.CardName cardName;
+    [SerializeField] Text nameText;
+    [SerializeField] Image cardImage;
+    [SerializeField] Text description;
     private int money;
 
     private Action function;
@@ -31,11 +33,18 @@ public class CardBase : MonoBehaviour
     {
         cardSpecies = _data.cardSpecies;
         cardName = _data.cardName;
+        money = _data.needMoney;
+        if (nameText != null)
+            nameText.text = _data.cardNameText;
         if (cardImage != null)
             cardImage.sprite = _data.cardImage;
         if (description != null)
             description.text = _data.description;
-        money = _data.needMoney;
+    }
+
+    public void MyisExitCard()
+    {
+        Shop.instance.CloseShopMenu();
     }
 
     //執行功能
@@ -46,9 +55,22 @@ public class CardBase : MonoBehaviour
 
     public void BuyThisCard()
     {
-        //判斷是否有錢買
-        //扣除money
-        Card_Manager.BuyOneNewCard(cardName);
-        Destroy(gameObject);
+        if (cardSpecies != CardManager.CardSpecies.Commodity)
+        {
+            Debug.Log("此物不是商品");
+            if (cardName == CardManager.CardName.Exit)
+            {
+                MyisExitCard();
+            }
+            return;
+        }
+
+        if (!Game_Flow.DetuctMoney(money))
+            Debug.Log("金錢不足");
+        else
+        {
+            Card_Manager.BuyOneNewCard(cardName);
+            Destroy(gameObject);
+        }
     }
 }

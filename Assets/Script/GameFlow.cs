@@ -16,11 +16,12 @@ public class GameFlow : MonoBehaviour
     int guestNum = 0;
 
     [SerializeField] Transform guestWalkTarget;
+    [SerializeField] public Transform guestLeaveTarget;
 
 
     public enum GameState
     {
-        Initial, WaitingGuest, GuestComing, GuestTime, PlayerTime, ShoppingTime, GameOver
+        Initial, WaitingGuest, GuestComing, GuestTime, PlayerTime, GameOver
     }
 
     GameState currentState = GameState.Initial;
@@ -59,30 +60,70 @@ public class GameFlow : MonoBehaviour
             case GameState.WaitingGuest:
                 if (Time.timeSinceLevelLoad > WaitingTime)
                 {
-                    Debug.Log("GuestComing");
+                    Debug.Log("WaitingGuest");
                     currentState = GameState.GuestComing;
                 }
                 break;
 
             case GameState.GuestComing:
-                if (guestArray[guestNum].isWalk == false)
+            
+                if (guestNum <= guestArray.Length - 1)
                 {
-                    guestArray[guestNum].GuestMove(guestWalkTarget.position);
+                    if (guestArray[guestNum].isWalk == false)
+                    {
+                        Debug.Log("GuestComing");
+                        guestArray[guestNum].GuestMove(guestWalkTarget.position);
+                    }
+                    else
+                    {
+                        if (guestArray[guestNum].FinishWalk() == true)
+                        {
+                            //guestNum++;
+                            currentState = GameState.GuestTime;
+                        }
+                    }
                 }
                 else
                 {
-                    if (guestArray[guestNum].FinishWalk() == true)
-                    {
-                        currentState = GameState.GuestTime;
-                        Debug.Log("GameState.GuestTime");
-                        currentState = GameState.PlayerTime;
-                    }
+                    currentState = GameState.GameOver;
                 }
                 break;
-
+            case GameState.GuestTime:
+            Debug.Log("GuestTime");
+                guestArray[guestNum].GuestGoAction();
+                currentState = GameState.PlayerTime;
+                break;
             case GameState.PlayerTime:
                 
-                break;
+            break;
         }
+    }
+
+
+    public void NextState()
+    {
+        currentState = (GameState)((int)currentState + 1);
+    }
+
+    public void BackState()
+    {
+        currentState = (GameState)((int)currentState - 1);
+    }
+
+    public void ToState(GameState state)
+    {
+        currentState = state;
+    }
+
+    public bool DetuctMoney(int _needMoney)
+    {
+        if (_needMoney < money)
+            return false;
+        else
+        {
+            money -= _needMoney;
+            return true;
+        }
+
     }
 }
