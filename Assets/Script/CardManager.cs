@@ -53,7 +53,8 @@ public class CardManager : MonoBehaviour
         C3,
         D1,
         D2,
-        D3
+        D3,
+        Exit
     }
 
     [SerializeField] Transform[] diaCardSpawnPoint;
