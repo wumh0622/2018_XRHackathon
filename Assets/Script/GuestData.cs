@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "要跟Guest_Name一樣")]
 public class GuestData : ScriptableObject
 {
     #region 我的Data
     public GuestManager.GuestName Guest_Name;
 
+    public List<GuestManager.myAction> myActions = new List<GuestManager.myAction>();
     public List<_talk> mytalks = new List<_talk>();
     public List<_need> myneeds = new List<_need>();
 
@@ -29,7 +30,7 @@ public class GuestData : ScriptableObject
     {
         public string sentence;
         public int OpenLevel;
-        public CardManager.CardName NeedToTrigger;
+        public List<CardManager.CardName> NeedToTrigger = new List<CardManager.CardName>();
     }
 
     [System.Serializable]
@@ -56,7 +57,7 @@ public class GuestData : ScriptableObject
             }
         }
     }
-    //in
+
     public int _level = 0;//要找句子的level
     public Question _question = new Question();
     public List<Answer> _answers = new List<Answer>();
@@ -64,9 +65,7 @@ public class GuestData : ScriptableObject
     public bool IsRemove = false;
     public void AddSentence()
     {
-        SortLevel();
-
-        _talk t = mytalks.Find(x => x.level == _level);
+        /*_talk t = mytalks.Find(x => x.level == _level);
         if (t == null)//沒有此LEVEL的情況
         {
             t = new _talk();
@@ -74,13 +73,18 @@ public class GuestData : ScriptableObject
             _level = t.level;
             mytalks.Add(t);
             Debug.LogWarning("沒有此LEVEL的數據，將新增一個");
-        }
+        }*/
+        _talk t = new _talk();
+        t.level = mytalks.Count;
+        mytalks.Add(t);
         t.questiom = _question;
         t.answers = _answers;
 
-        /*_level = 0;
+        _level = 0;
         _question = new Question();
-        _answers = new List<Answer>();*/
+        _answers = new List<Answer>();
+
+        Debug.LogFormat("新增Level{0}，新增完成" + t.level);
     }
 
     public void RemoveLevel()

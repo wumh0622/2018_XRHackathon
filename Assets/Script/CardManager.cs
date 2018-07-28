@@ -10,6 +10,8 @@ public class CardManager : MonoBehaviour
     [System.Serializable]
     public class CardData
     {
+        [Tooltip("對話卡才需要")]
+        public GuestManager.GuestName guestN;
         [Tooltip("此卡種類")]
         public CardSpecies cardSpecies;
         [Tooltip("此卡名稱")]
@@ -37,11 +39,18 @@ public class CardManager : MonoBehaviour
     public enum CardName
     {
         Null,
-        test1,
-        test2,
-        test3,
-        test4,
-        test5
+        A1,
+        A2,
+        A3,
+        B1,
+        B2,
+        B3,
+        C1,
+        C2,
+        C3,
+        D1,
+        D2,
+        D3
     }
 
     [SerializeField] Transform[] diaCardSpawnPoint;
@@ -97,7 +106,7 @@ public class CardManager : MonoBehaviour
     }
 
     //取得卡牌功能
-    public Action GetCardFunction(CardName _name)
+    /*public Action GetCardFunction(CardName _name)
     {
         switch (_name)
         {
@@ -106,7 +115,7 @@ public class CardManager : MonoBehaviour
             default:
                 return null;
         }
-    }
+    }*/
 
     public int GetCardAmount(CardName _name)
     {
@@ -120,17 +129,22 @@ public class CardManager : MonoBehaviour
     }
     #endregion
 
-    public void InitialDiaCard()
+    public void InitialDiaCard(List<CardData> TalkCards)
     {
-        for (int i = 0; i < diaCardSpawnPoint.Length; i++)
+        //清除用
+        foreach (var point in diaCardSpawnPoint)
         {
-            if(diaCardSpawnPoint[i].gameObject.GetComponentInChildren<CardBase>() != null)
+            if (point.gameObject.GetComponentInChildren<CardBase>() != null)
             {
-                Destroy(diaCardSpawnPoint[i].gameObject.GetComponentInChildren<CardBase>().gameObject);
+                Destroy(point.gameObject.GetComponentInChildren<CardBase>().gameObject);
             }
+        }
+
+        for (int i = 0; i < TalkCards.Count; i++)
+        {
             cardObj.transform.localPosition = Vector3.zero;
             Instantiate(cardObj, diaCardSpawnPoint[i]);
-            cardObj.GetComponent<CardBase>().SetCardData(dialogueCardData[i]);
+            cardObj.GetComponent<CardBase>().SetCardData(TalkCards[i]);
         }
     }
 }

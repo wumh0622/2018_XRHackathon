@@ -9,11 +9,6 @@ public class ShopItem : VRTK.VRTK_InteractableObject
     [Space(50)]
     [SerializeField]CardManager.CardName cardToGet;
     GameObject cardPrefab;
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 083b6bed9e70e612e8b9bfdb0463319b5d393eee
     GameObject clone;
 
     VRTK_InteractUse controller;

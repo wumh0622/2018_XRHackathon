@@ -16,7 +16,7 @@ public class CardBase : MonoBehaviour
     private int money;
 
     private Action function;
-    public Action Function1
+    /*public Action Function1
     {
         get
         {
@@ -25,7 +25,7 @@ public class CardBase : MonoBehaviour
 
             return function;
         }
-    }
+    }*/
 
     public void SetCardData(CardManager.CardData _data)
     {
@@ -41,7 +41,7 @@ public class CardBase : MonoBehaviour
     //執行功能
     public void StartFunction()
     {
-        Function1();
+        //Function1();
     }
 
     public void BuyThisCard()
