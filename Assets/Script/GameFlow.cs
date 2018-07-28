@@ -79,4 +79,15 @@ public class GameFlow : MonoBehaviour
                 break;
         }
     }
+
+    public bool DetuctMoney(int _needMoney)
+    {
+        if (_needMoney < money)
+            return false;
+        else
+        {
+            money -= _needMoney;
+            return true;
+        }
+    }
 }

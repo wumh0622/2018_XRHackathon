@@ -34,10 +34,10 @@ MonoBehaviour:
     value: 1
   shutterAngle:
     overrideState: 0
-    value: 270
+    value: 96
   sampleCount:
     overrideState: 0
-    value: 10
+    value: 16
 --- !u!114 &114072532585848952
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -54,7 +54,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
+    overrideState: 1
     value: 0
   color:
     overrideState: 0
@@ -66,8 +66,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   smoothness:
-    overrideState: 0
-    value: 0.2
+    overrideState: 1
+    value: 0.195
   roundness:
     overrideState: 0
     value: 1

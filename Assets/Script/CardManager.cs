@@ -12,8 +12,10 @@ public class CardManager : MonoBehaviour
     {
         [Tooltip("此卡種類")]
         public CardSpecies cardSpecies;
-        [Tooltip("此卡名稱")]
+        [Tooltip("此卡數據鑰匙")]
         public CardName cardName;
+        [Tooltip("此卡名稱")]
+        public string cardNameText;
         [Tooltip("此卡圖片")]
         public Sprite cardImage;
         [Tooltip("購買金錢")]
@@ -24,6 +26,8 @@ public class CardManager : MonoBehaviour
         public string description;
         [Tooltip("此卡述說的字句")]
         public string cardText;
+        [Tooltip("此卡是否為可購買商品")]
+        public bool isCommodity = false;
     }
 
     public enum CardSpecies

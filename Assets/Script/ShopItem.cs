@@ -10,8 +10,6 @@ public class ShopItem : VRTK.VRTK_InteractableObject
     [SerializeField]CardManager.CardName cardToGet;
     GameObject cardPrefab;
 
-<<<<<<< HEAD
-=======
     GameObject clone;
 
     VRTK_InteractUse controller;
@@ -41,7 +39,6 @@ public class ShopItem : VRTK.VRTK_InteractableObject
         }
     }
 
->>>>>>> 1d2b6a5edd022da9e3586bfaab71db1bfaba4a10
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
 	{
         base.StartUsing(currentUsingObject);
@@ -55,9 +52,5 @@ public class ShopItem : VRTK.VRTK_InteractableObject
             clone.transform.position = currentUsingObject.gameObject.transform.position;
             controller = currentUsingObject;
         }
-
-
-
     }
-
 }
