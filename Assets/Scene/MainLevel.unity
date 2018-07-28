@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1865263876}
-<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.20858607, g: 0.3578698, b: 0.819543, a: 1}
-=======
-  m_IndirectSpecularColor: {r: 0.20863286, g: 0.35787615, b: 0.81952864, a: 1}
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -558,7 +554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &96154760 stripped
 GameObject:
@@ -1051,7 +1047,7 @@ RectTransform:
   - {fileID: 772291261}
   - {fileID: 1981295025}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2911,9 +2907,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardObj: {fileID: 1431633503704876, guid: 087e7e966f89a674bb9c41ea52b7f413, type: 2}
   firstPos: {fileID: 1978241953}
-  cardGap: 0.5
   lincesPos: {fileID: 1484295751}
+  cardGap: 0.5
   allShopCard: 5
+  test: {fileID: 0}
 --- !u!1 &367434463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100284, guid: 7daabbd3555848248a121b07e8c5f551,
@@ -3392,7 +3389,7 @@ RectTransform:
   - {fileID: 221325973}
   - {fileID: 1476057288}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3473,7 +3470,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4924097283529498, guid: decaf85fd55101f4799317111134ee4b, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4672395329034614, guid: decaf85fd55101f4799317111134ee4b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3856,7 +3853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526994399
 GameObject:
@@ -6579,49 +6576,6 @@ MonoBehaviour:
     fallbackTypeName: VRTK.SDK_FallbackController
     typeName: VRTK.SDK_DaydreamController
     descriptionIndex: 0
-<<<<<<< HEAD
-=======
---- !u!1 &710586512 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100138, guid: 5a24731329b42654db006753d2025e9c,
-    type: 3}
-  m_PrefabInternal: {fileID: 1473906565}
---- !u!195 &710586515
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 710586512}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 0
-  m_Acceleration: 10
-  avoidancePriority: 50
-  m_AngularSpeed: 2
-  m_StoppingDistance: 0.5
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &710586516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 710586512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b16dd33ae177bd542a0a3e09f9be372b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mydata: {fileID: 0}
-  guestActions: 0000000000000000
-  isWalk: 0
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
 --- !u!1 &712863562
 GameObject:
   m_ObjectHideFlags: 0
@@ -7122,151 +7076,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12350addc9b8aaf47973d61b74ea2662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaCardSpawnPoint: []
+  diaCardSpawnPoint:
+  - {fileID: 1978241953}
+  - {fileID: 507650479}
+  - {fileID: 1046298709}
+  - {fileID: 830370345}
+  - {fileID: 93178296}
   dialogueCardData:
-<<<<<<< HEAD
-  - cardSpecies: 1
-    cardName: 5
-    cardNameText: 
-=======
-  - guestN: 1
+  - guestN: 0
     cardSpecies: 1
-    cardName: 1
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
-<<<<<<< HEAD
-    cardText: 
-    isCommodity: 0
-  - cardSpecies: 1
-    cardName: 5
-    cardNameText: 
-=======
-    cardText: "\u5594!\u4E0D\u7528\u4E0D\u7528\uFF0C\u6211\u5DF2\u7D93\u6709\u5973\u670B\u53CB\u4E86!"
-  - guestN: 1
-    cardSpecies: 1
-    cardName: 2
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
-<<<<<<< HEAD
-    cardText: 
-    isCommodity: 0
-  - cardSpecies: 1
-    cardName: 5
-    cardNameText: 
-=======
-    cardText: "\u6C92\u6709\u554A\uFF0C\u6211\u73FE\u5728\u662F\u55AE\u8EAB"
-  - guestN: 1
-    cardSpecies: 1
-    cardName: 3
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
-<<<<<<< HEAD
-    cardText: 
-    isCommodity: 0
-  - cardSpecies: 1
-    cardName: 5
-    cardNameText: 
-=======
-    cardText: "\u7389\u862D\u5B38\uFF0C\u9019\u2026\u2026\u554F\u984C\u6BD4\u8F03\u79C1\u4EBA\u3002\u53EF\u80FD\u6211\u4E0D\u592A\u65B9\u4FBF\u2026\u2026"
-  - guestN: 1
-    cardSpecies: 1
-    cardName: 4
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
-<<<<<<< HEAD
-    cardText: 
-    isCommodity: 0
-  - cardSpecies: 1
-=======
-    cardText: "\u6709\u554A\uFF0C\u6709\u554A\u798F\u4F2F\u770B\u8D77\u4F86\u6C23\u8272\u5F88\u597D!"
-  - guestN: 1
-    cardSpecies: 1
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardName: 5
     cardNameText: 
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
-<<<<<<< HEAD
     cardText: 
-    isCommodity: 0
-  myCardData:
-  - cardSpecies: 2
-=======
-    cardText: "\u9084\u6C92\u8036\uFF0C\u6700\u8FD1\u6574\u7406\u5E97\u9762\u6BD4\u8F03\u5FD9\uFF0C\u9084\u6C92\u53BB\u627E\u4ED6"
-  - guestN: 1
+  - guestN: 0
     cardSpecies: 1
-    cardName: 6
+    cardName: 5
+    cardNameText: 
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
-    cardText: "\u798F\u4F2F\u662F\u8AB0?"
-  - guestN: 1
+    cardText: 
+  - guestN: 0
     cardSpecies: 1
-    cardName: 7
+    cardName: 5
+    cardNameText: 
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
-    cardText: "\u4E0D\u2026\u4E0D\u7528\u4E86\u5566\u7389\u862D\u5B38\uFF0C\u9019\u6A23\u592A\u9EBB\u7169\u59B3\u4E86"
-  - guestN: 1
+    cardText: 
+  - guestN: 0
     cardSpecies: 1
-    cardName: 8
+    cardName: 5
+    cardNameText: 
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
-    cardText: "\u4E0D\u7528\u9EBB\u7169\u4E86\u3002\u6700\u8FD1\u6211\u6C92\u7A7A\u3002"
-  - guestN: 1
+    cardText: 
+  - guestN: 0
     cardSpecies: 1
-    cardName: 9
+    cardName: 5
+    cardNameText: 
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
-    cardText: "\u597D\u554A\u597D\u554A\uFF0C\u6539\u5929\u518D\u9EBB\u7169\u7389\u862D\u5B38\u5E6B\u6211\u4ECB\u7D39"
-  - guestN: 1
-    cardSpecies: 1
-    cardName: 10
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: "\u6253\u6298"
-    cardText: "\u7576\u7136\u53EF\u4EE5\u554A!"
-  - guestN: 1
-    cardSpecies: 1
-    cardName: 11
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: "\u76F4\u63A5\u9001"
-    cardText: "\u4E0D\u7528\u9019\u9EBC\u5BA2\u6C23\u5566\uFF0C\u9019\u74F6\u91AC\u6CB9\u5C31\u76F4\u63A5\u9001\u7389\u862D\u5B38\u6C92\u95DC\u4FC2\u3002"
-  - guestN: 1
-    cardSpecies: 1
-    cardName: 12
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
-    cardText: "\u7389\u862D\u5B38\uFF0C\u6211\u53EF\u80FD\u6C92\u8FA6\u6CD5\u5E6B\u59B3\u6253\u6298\u5566\uFF0C\u8ACB\u898B\u8AD2\u3002"
+    cardText: 
   myCardData:
   - guestN: 0
-    cardSpecies: 0
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
+    cardSpecies: 2
     cardName: 1
     cardNameText: a
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
@@ -7274,23 +7138,17 @@ MonoBehaviour:
     cardAmount: 10
     description: abcd
     cardText: 
-<<<<<<< HEAD
-    isCommodity: 1
-  - cardSpecies: 2
+  - guestN: 0
+    cardSpecies: 2
     cardName: 2
     cardNameText: b
-=======
-  - guestN: 0
-    cardSpecies: 0
-    cardName: 1
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
     needMoney: 1
     cardAmount: 10
     description: abcd
     cardText: 
-    isCommodity: 1
-  - cardSpecies: 2
+  - guestN: 0
+    cardSpecies: 2
     cardName: 3
     cardNameText: c
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
@@ -7298,8 +7156,8 @@ MonoBehaviour:
     cardAmount: 10
     description: abcd
     cardText: 
-    isCommodity: 1
-  - cardSpecies: 2
+  - guestN: 0
+    cardSpecies: 2
     cardName: 4
     cardNameText: d
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
@@ -7307,8 +7165,8 @@ MonoBehaviour:
     cardAmount: 10
     description: abcd
     cardText: 
-    isCommodity: 1
-  - cardSpecies: 2
+  - guestN: 0
+    cardSpecies: 2
     cardName: 5
     cardNameText: f
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
@@ -7316,7 +7174,6 @@ MonoBehaviour:
     cardAmount: 10
     description: abcd
     cardText: 
-    isCommodity: 1
   ShopData: []
   cardObj: {fileID: 1431633503704876, guid: 087e7e966f89a674bb9c41ea52b7f413, type: 2}
 --- !u!1 &781401217 stripped
@@ -7554,7 +7411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &817218391
 GameObject:
@@ -7673,7 +7530,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832660114
 GameObject:
@@ -9188,7 +9045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048687692 stripped
 GameObject:
@@ -9908,7 +9765,7 @@ Transform:
   - {fileID: 1131810213}
   - {fileID: 701253547}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1126265882
 GameObject:
@@ -12054,7 +11911,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452377398 stripped
 GameObject:
@@ -12219,63 +12076,6 @@ Transform:
   m_Father: {fileID: 1924618266}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1473906565
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 8.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.116999984
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 4.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.6905633
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.723272
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904976313710392, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 135431614716433924, guid: c861a6a6387b9e94898fd3d773701ad9,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 1.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 135431614716433924, guid: c861a6a6387b9e94898fd3d773701ad9,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 135431614716433924, guid: c861a6a6387b9e94898fd3d773701ad9,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c861a6a6387b9e94898fd3d773701ad9, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1476057287
 GameObject:
   m_ObjectHideFlags: 0
@@ -12508,7 +12308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496264005 stripped
 GameObject:
@@ -12842,7 +12642,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1557776640
 GameObject:
@@ -13692,7 +13492,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1656627452
 GameObject:
@@ -14959,7 +14759,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50.000004, y: -122.453, z: 0}
 --- !u!1 &1867175574
 GameObject:
@@ -15142,7 +14942,7 @@ Transform:
   - {fileID: 892942816}
   - {fileID: 287055367}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1901615343
 GameObject:
@@ -15768,11 +15568,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-<<<<<<< HEAD
       value: 597
-=======
-      value: 299
->>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -15947,7 +15743,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981295024
 GameObject:
@@ -16303,7 +16099,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2006142803
 GameObject:

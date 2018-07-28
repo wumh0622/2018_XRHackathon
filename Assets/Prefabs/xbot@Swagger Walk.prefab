@@ -2078,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16dd33ae177bd542a0a3e09f9be372b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mydata: {fileID: 11400000, guid: 6b46e85c8f9ae674d8bf04397fbcf0c0, type: 2}
+  guestName: 1
   guestActions: 01000000
   isWalk: 0
 --- !u!136 &136683309754267206
