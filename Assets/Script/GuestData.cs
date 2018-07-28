@@ -5,6 +5,7 @@ public class GuestData : ScriptableObject
 {
     #region 我的Data
     public GuestManager.GuestName Guest_Name;
+
     public List<_talk> mytalks = new List<_talk>();
     public List<_need> myneeds = new List<_need>();
 
@@ -12,14 +13,23 @@ public class GuestData : ScriptableObject
     public class _talk
     {
         public int level;
-        public List<_Sentence> mysentences = new List<_Sentence>();
+        public Question questiom;
+        public List<Answer> answers = new List<Answer>(1);
     }
 
     [System.Serializable]
-    public class _Sentence
+    public class Question
     {
-        public string ID;
         public string sentence;
+        public List<CardManager.CardName> CardOpens = new List<CardManager.CardName>(1);
+    }
+
+    [System.Serializable]
+    public class Answer
+    {
+        public string sentence;
+        public int OpenLevel;
+        public CardManager.CardName NeedToTrigger;
     }
 
     [System.Serializable]
@@ -31,27 +41,30 @@ public class GuestData : ScriptableObject
     #endregion
 
     #region Editor方便編輯用
-    public void SortID()
+    public void SortLevel()
     {
         for (int i = 0; i < mytalks.Count; i++)
         {
             mytalks[i].level = i;
-            for (int j = 0; j < mytalks[i].mysentences.Count; j++)
+            for (int j = 0; i < mytalks[i].answers.Count; i++)
             {
-                mytalks[i].mysentences[j].ID = string.Format("{0}{1}", mytalks[i].level, j);
+                if (mytalks[i].answers[j].OpenLevel >= mytalks.Count)
+                {
+                    mytalks[i].answers[j].OpenLevel = mytalks.Count - 1;
+                    Debug.LogErrorFormat("mytalks{0}.answers{1}.OpenLevel 超過mytalks.Count，已修改成0；mytalks.Count數量 : {2}", i, j, mytalks.Count - 1);
+                }
             }
         }
     }
-	//in
-    public int _level = 0;//要新增句子的level
-    public string _sec = string.Empty;//要新增的句子
+    //in
+    public int _level = 0;//要找句子的level
+    public Question _question = new Question();
+    public List<Answer> _answers = new List<Answer>();
 
-	//out
-    public string _id = string.Empty;//拿來看的
     public bool IsRemove = false;
     public void AddSentence()
     {
-        SortID();
+        SortLevel();
 
         _talk t = mytalks.Find(x => x.level == _level);
         if (t == null)//沒有此LEVEL的情況
@@ -62,29 +75,25 @@ public class GuestData : ScriptableObject
             mytalks.Add(t);
             Debug.LogWarning("沒有此LEVEL的數據，將新增一個");
         }
-        _Sentence s = new _Sentence();
-        s.ID = string.Format("{0}{1}", t.level, t.mysentences.Count);
-        _id = s.ID;
-        s.sentence = _sec;
-        t.mysentences.Add(s);
+        t.questiom = _question;
+        t.answers = _answers;
+
+        /*_level = 0;
+        _question = new Question();
+        _answers = new List<Answer>();*/
     }
 
-	public void RemoveSentence()
+    public void RemoveLevel()
     {
-        SortID();
+        SortLevel();
 
-        foreach (var item in mytalks)
+        if (mytalks.Contains(mytalks[_level]))
         {
-            _Sentence s = item.mysentences.Find(x => x.ID == _id);
-            if (s != null)
-            {
-                item.mysentences.Remove(s);
-                return;
-            }
-			else
-			{
-                Debug.LogWarning("沒有該數據");
-            }
+            mytalks.RemoveAt(_level);
+        }
+        else
+        {
+            Debug.LogWarning("沒有該數據");
         }
     }
     #endregion

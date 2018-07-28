@@ -9,22 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a2e07871f7cfc143817c80c5a723468, type: 3}
-  m_Name: New Guest Data
+  m_Name: Bob
   m_EditorClassIdentifier: 
-  Guest_Name: 1
+  Guest_Name: 0
   mytalks: []
-  myneeds:
-  - _cardName: 0
-    Number: 0
-  - _cardName: 0
-    Number: 0
-  - _cardName: 0
-    Number: 0
-  - _cardName: 0
-    Number: 0
-  - _cardName: 0
-    Number: 0
-  _level: 1
-  _sec: 123
-  _id: 00
-  IsRemove: 1
+  myneeds: []
+  _level: 0
+  _question:
+    sentence: 
+    CardOpens: 
+  _answers: []
+  IsRemove: 0

@@ -20,7 +20,7 @@ public class GameFlow : MonoBehaviour
 
     public enum GameState
     {
-        Initial, WaitingGuest, GuestComing, GuestTime, PlayerTime, GameOver
+        Initial, WaitingGuest, GuestComing, GuestTime, PlayerTime, ShoppingTime, GameOver
     }
 
     GameState currentState = GameState.Initial;
@@ -38,22 +38,23 @@ public class GameFlow : MonoBehaviour
     {
         Initial();
     }
-	void Initial()
-	{
+    void Initial()
+    {
         //初始化
         money = 10;
         heart = 10;
         guestNum = 0;
-	}
+    }
 
     // Update is called once per frame
     void Update()
     {
         switch (currentState)
         {
-			case GameState.Initial:
-				Initial();
-				currentState = GameState.WaitingGuest;
+            case GameState.Initial:
+                Initial();
+                CardManager.instance.InitialDiaCard();
+                currentState = GameState.WaitingGuest;
                 break;
             case GameState.WaitingGuest:
                 if (Time.timeSinceLevelLoad > WaitingTime)
@@ -63,19 +64,24 @@ public class GameFlow : MonoBehaviour
                 }
                 break;
 
-			case GameState.GuestComing:
-			if(guestArray[guestNum].isWalk == false)
-			{
-                guestArray[guestNum].GuestMove(guestWalkTarget.position);
-            }
-			else
-			{
-				if(guestArray[guestNum].FinishWalk() == true)
-				{
+            case GameState.GuestComing:
+                if (guestArray[guestNum].isWalk == false)
+                {
+                    guestArray[guestNum].GuestMove(guestWalkTarget.position);
+                }
+                else
+                {
+                    if (guestArray[guestNum].FinishWalk() == true)
+                    {
                         currentState = GameState.GuestTime;
                         Debug.Log("GameState.GuestTime");
+                        currentState = GameState.PlayerTime;
                     }
-			}
+                }
+                break;
+
+            case GameState.PlayerTime:
+                
                 break;
         }
     }
