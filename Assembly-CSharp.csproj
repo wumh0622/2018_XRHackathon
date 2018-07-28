@@ -9,11 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-<<<<<<< HEAD
-    <ProjectGuid>{A3628516-9A87-02AC-6D35-0EEFAB9EFD0B}</ProjectGuid>
-=======
     <ProjectGuid>{3F3DF126-4B30-DD35-260A-3CEB09E4E7D9}</ProjectGuid>
->>>>>>> 083b6bed9e70e612e8b9bfdb0463319b5d393eee
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -50,11 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
-<<<<<<< HEAD
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.2.0f2\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
-=======
       <HintPath>E:\Program Files\Unity2018\2018.2\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
->>>>>>> 083b6bed9e70e612e8b9bfdb0463319b5d393eee
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>E:\Program Files\Unity2018\2018.2\Editor\Data\Managed/UnityEditor.dll</HintPath>

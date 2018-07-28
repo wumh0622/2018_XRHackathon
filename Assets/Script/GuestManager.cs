@@ -19,7 +19,8 @@ public class GuestManager : MonoBehaviour
     {
         None,
 		Request,
-		Talk
+		Talk,
+        Seller
     }
 	
     void Awake()

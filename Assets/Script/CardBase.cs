@@ -10,7 +10,7 @@ public class CardBase : MonoBehaviour
     private CardManager Card_Manager { get { if (cardManager == null) cardManager = CardManager.instance; return cardManager; } }
 
     public CardManager.CardSpecies cardSpecies;
-    private CardManager.CardName cardName;
+    public CardManager.CardName cardName;
     private Image cardImage;
     private Text description;
     private int money;

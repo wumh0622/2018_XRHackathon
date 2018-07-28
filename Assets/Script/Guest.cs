@@ -83,6 +83,9 @@ public class Guest : MonoBehaviour
                     }
                 }
                 break;
+            case GuestManager.myAction.Seller:
+                Shop.instance.OpenShopMenu();
+                break;
             default:
                 break;
         }
@@ -96,7 +99,7 @@ public class Guest : MonoBehaviour
 
         if (_actionInt >= guestActions.Count)
         {
-            Debug.Log("可離開，但要等玩家做完回應之後");
+            //GameFlow.instance.ToState(GameFlow.GameState.ShoppingTime);
         }
     }
 
@@ -143,7 +146,20 @@ public class Guest : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+        CardBase cardGet = other.GetComponent<CardBase>();
+        if(cardGet!=null)
+        {
+            if(guestActions[_actionInt] == GuestManager.myAction.Request)
+            {
+                CompleteGuestNeed(cardGet.cardName, 1);
+                GameFlow.instance.BackState();
+            }
+            else if(guestActions[_actionInt] == GuestManager.myAction.Talk)
+            {
+                OnPlayerResponse(cardGet.cardName);
+                GameFlow.instance.BackState();
+            }
+        }
     }
 }
 
