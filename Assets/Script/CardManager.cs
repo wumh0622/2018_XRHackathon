@@ -26,8 +26,6 @@ public class CardManager : MonoBehaviour
         public string description;
         [Tooltip("此卡述說的字句")]
         public string cardText;
-        [Tooltip("此卡是否為可購買商品")]
-        public bool isCommodity = false;
     }
 
     public enum CardSpecies
@@ -41,6 +39,7 @@ public class CardManager : MonoBehaviour
     public enum CardName
     {
         Null,
+        Exit,
         test1,
         test2,
         test3,
@@ -91,6 +90,14 @@ public class CardManager : MonoBehaviour
                 _base.SetCardData(data);
             }
         }
+    }
+
+    //取得單個數據
+    public CardData GetCorrectData(CardName _name)
+    {
+        CardData data = null;
+        DataBase.TryGetValue(_name, out data);
+        return data;
     }
 
     //購買後

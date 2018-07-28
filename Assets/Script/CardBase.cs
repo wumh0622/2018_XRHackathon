@@ -16,7 +16,6 @@ public class CardBase : MonoBehaviour
     [SerializeField] Image cardImage;
     [SerializeField] Text description;
     private int money;
-    private bool isCommodity;
 
     private Action function;
     public Action Function1
@@ -35,13 +34,17 @@ public class CardBase : MonoBehaviour
         cardSpecies = _data.cardSpecies;
         cardName = _data.cardName;
         money = _data.needMoney;
-        isCommodity = _data.isCommodity;
         if (nameText != null)
             nameText.text = _data.cardNameText;
         if (cardImage != null)
             cardImage.sprite = _data.cardImage;
         if (description != null)
             description.text = _data.description;
+    }
+
+    public void MyisExitCard()
+    {
+        Shop.instance.CloseShopMenu();
     }
 
     //執行功能
@@ -52,6 +55,16 @@ public class CardBase : MonoBehaviour
 
     public void BuyThisCard()
     {
+        if (cardSpecies != CardManager.CardSpecies.Commodity)
+        {
+            Debug.Log("此物不是商品");
+            if (cardName == CardManager.CardName.Exit)
+            {
+                MyisExitCard();
+            }
+            return;
+        }
+
         if (!Game_Flow.DetuctMoney(money))
             Debug.Log("金錢不足");
         else
