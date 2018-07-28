@@ -15,9 +15,7 @@ public class GuestManager : MonoBehaviour
     public enum GuestName
     {
         None,
-        Allen,
-		Test1,
-		Test2
+        bigMom
     }
 	//客人動作，買東西或談話
     public enum myAction

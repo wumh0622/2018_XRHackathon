@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1865263876}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.20858607, g: 0.3578698, b: 0.819543, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.20863286, g: 0.35787615, b: 0.81952864, a: 1}
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6575,6 +6579,49 @@ MonoBehaviour:
     fallbackTypeName: VRTK.SDK_FallbackController
     typeName: VRTK.SDK_DaydreamController
     descriptionIndex: 0
+<<<<<<< HEAD
+=======
+--- !u!1 &710586512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100138, guid: 5a24731329b42654db006753d2025e9c,
+    type: 3}
+  m_PrefabInternal: {fileID: 1473906565}
+--- !u!195 &710586515
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 710586512}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0
+  m_Acceleration: 10
+  avoidancePriority: 50
+  m_AngularSpeed: 2
+  m_StoppingDistance: 0.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &710586516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 710586512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16dd33ae177bd542a0a3e09f9be372b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mydata: {fileID: 0}
+  guestActions: 0000000000000000
+  isWalk: 0
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
 --- !u!1 &712863562
 GameObject:
   m_ObjectHideFlags: 0
@@ -7075,60 +7122,151 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12350addc9b8aaf47973d61b74ea2662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaCardSpawnPoint:
-  - {fileID: 1978241953}
-  - {fileID: 507650479}
-  - {fileID: 1046298709}
-  - {fileID: 830370345}
-  - {fileID: 93178296}
+  diaCardSpawnPoint: []
   dialogueCardData:
+<<<<<<< HEAD
   - cardSpecies: 1
     cardName: 5
     cardNameText: 
+=======
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 1
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
+<<<<<<< HEAD
     cardText: 
     isCommodity: 0
   - cardSpecies: 1
     cardName: 5
     cardNameText: 
+=======
+    cardText: "\u5594!\u4E0D\u7528\u4E0D\u7528\uFF0C\u6211\u5DF2\u7D93\u6709\u5973\u670B\u53CB\u4E86!"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 2
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
+<<<<<<< HEAD
     cardText: 
     isCommodity: 0
   - cardSpecies: 1
+    cardName: 5
+    cardNameText: 
+=======
+    cardText: "\u6C92\u6709\u554A\uFF0C\u6211\u73FE\u5728\u662F\u55AE\u8EAB"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 3
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+<<<<<<< HEAD
+    cardText: 
+    isCommodity: 0
+  - cardSpecies: 1
+    cardName: 5
+    cardNameText: 
+=======
+    cardText: "\u7389\u862D\u5B38\uFF0C\u9019\u2026\u2026\u554F\u984C\u6BD4\u8F03\u79C1\u4EBA\u3002\u53EF\u80FD\u6211\u4E0D\u592A\u65B9\u4FBF\u2026\u2026"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 4
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+<<<<<<< HEAD
+    cardText: 
+    isCommodity: 0
+  - cardSpecies: 1
+=======
+    cardText: "\u6709\u554A\uFF0C\u6709\u554A\u798F\u4F2F\u770B\u8D77\u4F86\u6C23\u8272\u5F88\u597D!"
+  - guestN: 1
+    cardSpecies: 1
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardName: 5
     cardNameText: 
     cardImage: {fileID: 0}
     needMoney: 0
     cardAmount: 0
     description: 
-    cardText: 
-    isCommodity: 0
-  - cardSpecies: 1
-    cardName: 5
-    cardNameText: 
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
-    cardText: 
-    isCommodity: 0
-  - cardSpecies: 1
-    cardName: 5
-    cardNameText: 
-    cardImage: {fileID: 0}
-    needMoney: 0
-    cardAmount: 0
-    description: 
+<<<<<<< HEAD
     cardText: 
     isCommodity: 0
   myCardData:
   - cardSpecies: 2
+=======
+    cardText: "\u9084\u6C92\u8036\uFF0C\u6700\u8FD1\u6574\u7406\u5E97\u9762\u6BD4\u8F03\u5FD9\uFF0C\u9084\u6C92\u53BB\u627E\u4ED6"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 6
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\u662F\u8AB0?"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 7
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u4E0D\u2026\u4E0D\u7528\u4E86\u5566\u7389\u862D\u5B38\uFF0C\u9019\u6A23\u592A\u9EBB\u7169\u59B3\u4E86"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 8
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u4E0D\u7528\u9EBB\u7169\u4E86\u3002\u6700\u8FD1\u6211\u6C92\u7A7A\u3002"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 9
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u597D\u554A\u597D\u554A\uFF0C\u6539\u5929\u518D\u9EBB\u7169\u7389\u862D\u5B38\u5E6B\u6211\u4ECB\u7D39"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 10
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: "\u6253\u6298"
+    cardText: "\u7576\u7136\u53EF\u4EE5\u554A!"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 11
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: "\u76F4\u63A5\u9001"
+    cardText: "\u4E0D\u7528\u9019\u9EBC\u5BA2\u6C23\u5566\uFF0C\u9019\u74F6\u91AC\u6CB9\u5C31\u76F4\u63A5\u9001\u7389\u862D\u5B38\u6C92\u95DC\u4FC2\u3002"
+  - guestN: 1
+    cardSpecies: 1
+    cardName: 12
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u7389\u862D\u5B38\uFF0C\u6211\u53EF\u80FD\u6C92\u8FA6\u6CD5\u5E6B\u59B3\u6253\u6298\u5566\uFF0C\u8ACB\u898B\u8AD2\u3002"
+  myCardData:
+  - guestN: 0
+    cardSpecies: 0
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardName: 1
     cardNameText: a
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
@@ -7136,10 +7274,16 @@ MonoBehaviour:
     cardAmount: 10
     description: abcd
     cardText: 
+<<<<<<< HEAD
     isCommodity: 1
   - cardSpecies: 2
     cardName: 2
     cardNameText: b
+=======
+  - guestN: 0
+    cardSpecies: 0
+    cardName: 1
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
     needMoney: 1
     cardAmount: 10
@@ -15624,7 +15768,11 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< HEAD
       value: 597
+=======
+      value: 299
+>>>>>>> 796bd19012d03a377e5c796ae62c18db86ead3c2
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}

@@ -13,7 +13,7 @@ public class GuestData_Editor : Editor
         
 
         _guestData.IsRemove = EditorGUILayout.Toggle("IsReomve", _guestData.IsRemove);
-        _guestData._level = EditorGUILayout.IntField("Level", _guestData._level);
+        
         if (!_guestData.IsRemove)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_question"), true);
@@ -22,10 +22,12 @@ public class GuestData_Editor : Editor
             if (GUILayout.Button("新增"))
             {
                 _guestData.AddSentence();
+                
             }
         }
         else
         {
+            _guestData._level = EditorGUILayout.IntField("Level", _guestData._level);
             if (GUILayout.Button("刪除"))
             {
                 _guestData.RemoveLevel();
@@ -34,15 +36,16 @@ public class GuestData_Editor : Editor
         }
 
         GUILayout.Space(10);
-        if (GUILayout.Button("Sort Level"))
+        /*if (GUILayout.Button("Sort Level"))
         {
             _guestData.SortLevel();
-        }
+        } */
 
         GUILayout.Space(5);
         GUILayout.Label("下面是Datas", EditorStyles.boldLabel);
         GUILayout.Space(5);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("Guest_Name"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("myActions"), true);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("mytalks"), true);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("myneeds"), true);
         //DrawDefaultInspector();

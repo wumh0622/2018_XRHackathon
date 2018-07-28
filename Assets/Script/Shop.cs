@@ -12,14 +12,16 @@ public class Shop : MonoBehaviour
     public GameObject cardObj;
     [Tooltip("第一張卡位子")]
     [SerializeField] Transform firstPos;
+    [Tooltip("發牌位子")]
+    [SerializeField] Transform lincesPos;
     [Tooltip("每張卡間隔")]
     [SerializeField] float cardGap;
-    [SerializeField] Transform lincesPos;
     private int nowIndex = 0;
 
-    //private Vector3 nowDis = Vector3.zero;
     [Tooltip("一次商店總共賣多少卡")]
     [SerializeField] int allShopCard;
+
+    private List<GameObject> nowShopList = new List<GameObject>();
 
     private void Awake()
     {
@@ -29,18 +31,38 @@ public class Shop : MonoBehaviour
             Destroy(this);
     }
 
-    
+    [SerializeField] CardBase test;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            OpenShopMenu();
+        }
 
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            test.BuyThisCard();
+        }
+    }
 
     public void OpenShopMenu()
     {
         RandomNextOne();
+    }
+    public void CloseShopMenu()
+    {
+        ClearAll();
     }
 
     private void RandomNextOne()
     {
         if (nowIndex == allShopCard)
         {
+            GameObject obj = Instantiate(cardObj, lincesPos.localPosition, Quaternion.identity);
+
+            obj.GetComponent<CardBase>().SetCardData(CardManager.instance.GetCorrectData(CardManager.CardName.Exit));
+            obj.transform.DOMove(firstPos.localPosition + new Vector3(nowIndex * cardGap, 0, 0), 0.65f).SetEase(Ease.OutQuart);
+            nowShopList.Add(obj);
             nowIndex = 0;
             return;
         }
@@ -55,6 +77,7 @@ public class Shop : MonoBehaviour
     {
         GameObject obj = Instantiate(cardObj, lincesPos.localPosition, Quaternion.identity);
         obj.GetComponent<CardBase>().SetCardData(Card_Manager.ShopData[_r]);
+        nowShopList.Add(obj);
         if (nowIndex == 0)
         {
             nowIndex++;
@@ -64,10 +87,20 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            obj.transform.DOMove(firstPos.localPosition + new Vector3(nowIndex * cardGap, 0, 0), 0.65f).SetEase(Ease.OutQuart); ;
+            obj.transform.DOMove(firstPos.localPosition + new Vector3(nowIndex * cardGap, 0, 0), 0.65f).SetEase(Ease.OutQuart);
             nowIndex++;
             yield return new WaitForSeconds(0.5f);
             RandomNextOne();
         }
     }
+
+    void ClearAll()
+    {
+        for (int i = 0; i < nowShopList.Count; i++)
+        {
+            if (nowShopList[i] != null)
+                Destroy(nowShopList[i]);
+        }
+    }
+
 }

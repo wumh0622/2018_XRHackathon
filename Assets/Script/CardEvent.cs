@@ -21,6 +21,5 @@ public class CardEvent : VRTK.VRTK_InteractableObject {
         Debug.Log("StartUsing");
         //currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>()
         //GameObject _obj = 
-        GetComponent<CardBase>().isUse = true;
     }
 }

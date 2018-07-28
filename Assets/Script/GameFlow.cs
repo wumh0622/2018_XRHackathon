@@ -56,7 +56,7 @@ public class GameFlow : MonoBehaviour
         {
             case GameState.Initial:
                 Initial();
-                CardManager.instance.InitialDiaCard();
+                //CardManager.instance.InitialDiaCard();
                 currentState = GameState.WaitingGuest;
                 break;
             case GameState.WaitingGuest:

@@ -3,24 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using VRTK;
+using UnityEditor;
 
 public class Guest : MonoBehaviour
 {
     private NavMeshAgent nav;
-    public GuestData mydata;
+    private GuestData mydata;
+    public GuestManager.GuestName guestName;
     public List<GuestManager.myAction> guestActions = new List<GuestManager.myAction>();
     public bool isWalk;
     int _actionInt = 0;
     bool isLeaving;
 
+    private CardManager cardManager;
+    private CardManager Card_Manager { get { if (cardManager == null) cardManager = CardManager.instance; return cardManager; } }
+
     void Awake()
     {
+        string filePath = string.Format(@"Assets/{0}.asset", guestName);
         nav = GetComponent<NavMeshAgent>();
+        mydata = (GuestData)AssetDatabase.LoadAssetAtPath(filePath, typeof(GuestData));
     }
 
     void Start()
     {
         nav.updateRotation = false;
+        guestActions = mydata.myActions;
     }
     
     void Kill()
@@ -60,7 +68,22 @@ public class Guest : MonoBehaviour
                 {
                     if (talkLevel < mydata.mytalks.Count)
                     {
+                        //產生玩家對話卡
+                        List<CardManager.CardData> tt = new List<CardManager.CardData>();
+                        List<CardManager.CardData> playerTalkCards = Card_Manager.dialogueCardData.FindAll(x => x.guestN == guestName);
+                        foreach (var card in playerTalkCards)
+                        {
+                            foreach (var cardOpen in mydata.mytalks[talkLevel].questiom.CardOpens)
+                            {
+                                if (card.cardName == cardOpen)
+                                {
+                                    tt.Add(card);
+                                    break;
+                                }
+                            }
+                        }
                         Debug.Log("Question : " + mydata.mytalks[talkLevel].questiom.sentence);
+                        Card_Manager.InitialDiaCard(tt);
                     }
                     else
                     {
@@ -117,8 +140,25 @@ public class Guest : MonoBehaviour
     //玩家回應NPC Question用的
     public void OnPlayerResponse(CardManager.CardName _card)
     {
-        Debug.Log("下一個level : " + mydata.mytalks[talkLevel].answers.Find(x => x.NeedToTrigger == _card).OpenLevel);
-        talkLevel = mydata.mytalks[talkLevel].answers.Find(x => x.NeedToTrigger == _card).OpenLevel;
+        if (talkLevel >= mydata.mytalks.Count - 1)
+        {
+            talkLevel = 0;
+            Debug.Log("以結尾，下面一位");
+            return;
+        }
+
+        foreach (var item in mydata.mytalks[talkLevel].answers)
+        {
+            foreach (var i in item.NeedToTrigger)
+            {
+                if (i == _card)
+                {
+                    Debug.Log("下一個level : " + item.OpenLevel);
+                    talkLevel = item.OpenLevel;
+                    return;
+                }
+            }
+        }
     }
 
     public bool FinishWalk()
