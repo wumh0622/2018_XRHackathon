@@ -11,7 +11,7 @@ public class CardBase : MonoBehaviour
 
 
     public CardManager.CardSpecies cardSpecies;
-    private CardManager.CardName cardName;
+    public CardManager.CardName cardName;
     [SerializeField] Text nameText;
     [SerializeField] Image cardImage;
     [SerializeField] Text description;

@@ -16,7 +16,7 @@ public class GameFlow : MonoBehaviour
     int guestNum = 0;
 
     [SerializeField] Transform guestWalkTarget;
-    [SerializeField] Transform guestLeaveTarget;
+    [SerializeField] public Transform guestLeaveTarget;
 
 
     public enum GameState
@@ -60,23 +60,25 @@ public class GameFlow : MonoBehaviour
             case GameState.WaitingGuest:
                 if (Time.timeSinceLevelLoad > WaitingTime)
                 {
-                    Debug.Log("GuestComing");
+                    Debug.Log("WaitingGuest");
                     currentState = GameState.GuestComing;
                 }
                 break;
 
             case GameState.GuestComing:
-                if (guestNum > guestArray.Length - 1)
+            
+                if (guestNum <= guestArray.Length - 1)
                 {
                     if (guestArray[guestNum].isWalk == false)
                     {
+                        Debug.Log("GuestComing");
                         guestArray[guestNum].GuestMove(guestWalkTarget.position);
                     }
                     else
                     {
                         if (guestArray[guestNum].FinishWalk() == true)
                         {
-                            guestNum++;
+                            //guestNum++;
                             currentState = GameState.GuestTime;
                         }
                     }
@@ -87,6 +89,7 @@ public class GameFlow : MonoBehaviour
                 }
                 break;
             case GameState.GuestTime:
+            Debug.Log("GuestTime");
                 guestArray[guestNum].GuestGoAction();
                 currentState = GameState.PlayerTime;
                 break;
@@ -110,6 +113,7 @@ public class GameFlow : MonoBehaviour
     public void ToState(GameState state)
     {
         currentState = state;
+    }
 
     public bool DetuctMoney(int _needMoney)
     {

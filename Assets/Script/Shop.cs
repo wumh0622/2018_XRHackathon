@@ -30,19 +30,7 @@ public class Shop : MonoBehaviour
     }
 
     
-    [SerializeField] CardBase test;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            OpenShopMenu();
-        }
 
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            test.BuyThisCard();
-        }
-    }
 
     public void OpenShopMenu()
     {

@@ -10,6 +10,7 @@ public class Guest : MonoBehaviour
     public List<GuestManager.myAction> guestActions = new List<GuestManager.myAction>();
     public bool isWalk;
     int _actionInt = 0;
+    bool isLeaving;
 
     void Awake()
     {
@@ -23,27 +24,14 @@ public class Guest : MonoBehaviour
     
     void Update()
     {
-        Quaternion CharacterRot = Quaternion.identity;
-        Vector3 tmpNextPos = nav.steeringTarget - transform.position;
-        tmpNextPos.y = transform.localPosition.y;
-        if (tmpNextPos != Vector3.zero)
+        if(isLeaving == true)
         {
-            CharacterRot = Quaternion.LookRotation(tmpNextPos);
-            //nextTargetRot.rotation = CharacterRot;
-            //MoveDir = nextTargetRot.forward;
+            if(nav.remainingDistance < nav.stoppingDistance)
+            {
+                Destroy(gameObject);
+            }
         }
-
-        Vector3 maxDisGap = nav.destination - transform.position;
-        float maxDis = maxDisGap.sqrMagnitude;
-        if (maxDis < Mathf.Pow(nav.stoppingDistance, 2))
-        {
-            nav.Stop();
-        }
-        else
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, CharacterRot, nav.angularSpeed);
-        }
-    }
+    } 
 
     public void GuestMove(Vector3 _pos)
     {
@@ -90,7 +78,7 @@ public class Guest : MonoBehaviour
                 break;
         }
 
-        _actionInt++;
+        
     }
 
     public void GuestGoAction()
@@ -99,7 +87,8 @@ public class Guest : MonoBehaviour
 
         if (_actionInt >= guestActions.Count)
         {
-            //GameFlow.instance.ToState(GameFlow.GameState.ShoppingTime);
+            GameFlow.instance.BackState();
+            GuestLeaving();
         }
     }
 
@@ -152,14 +141,22 @@ public class Guest : MonoBehaviour
             if(guestActions[_actionInt] == GuestManager.myAction.Request)
             {
                 CompleteGuestNeed(cardGet.cardName, 1);
+                _actionInt++;
                 GameFlow.instance.BackState();
             }
             else if(guestActions[_actionInt] == GuestManager.myAction.Talk)
             {
                 OnPlayerResponse(cardGet.cardName);
+                _actionInt++;
                 GameFlow.instance.BackState();
             }
         }
+    }
+
+    void GuestLeaving()
+    {
+        nav.SetDestination(GameFlow.instance.guestLeaveTarget.position);
+        isLeaving = true;
     }
 }
 
