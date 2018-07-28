@@ -12,11 +12,30 @@ MonoBehaviour:
   m_Name: Bob
   m_EditorClassIdentifier: 
   Guest_Name: 0
-  mytalks: []
-  myneeds: []
+  mytalks:
+  - level: 0
+    questiom:
+      sentence: How are you
+      CardOpens: 0100000002000000
+    answers:
+    - sentence: I'm Good
+      OpenLevel: 1
+      NeedToTrigger: 1
+    - sentence: FU!!
+      OpenLevel: 2
+      NeedToTrigger: 2
+  myneeds:
+  - _cardName: 1
+    Number: 1
   _level: 0
   _question:
-    sentence: 
-    CardOpens: 
-  _answers: []
+    sentence: How are you
+    CardOpens: 0100000002000000
+  _answers:
+  - sentence: I'm Good
+    OpenLevel: 1
+    NeedToTrigger: 1
+  - sentence: FU!!
+    OpenLevel: 2
+    NeedToTrigger: 2
   IsRemove: 0

@@ -7,6 +7,11 @@ public class GuestManager : MonoBehaviour
     public static GuestManager instance;
     [SerializeField] GameObject[] GuestPerfabs;
 
+    [SerializeField] Transform GuestStartPoint;
+    public Guest currentGuest;
+
+    public int guestIndex;
+
     public enum GuestName
     {
         None,
@@ -29,8 +34,19 @@ public class GuestManager : MonoBehaviour
             Destroy(this);
     }
 
-    public void InstantiateGuest(int _Perfabsindex, Vector3 _pos, Quaternion _rot)
+    public bool InstantiateGuest()
     {
-        Instantiate(GuestPerfabs[_Perfabsindex], _pos, _rot);
+        if (guestIndex <= GuestPerfabs.Length - 1)
+        {
+            GameObject clone = Instantiate(GuestPerfabs[guestIndex], GuestStartPoint.position, Quaternion.identity);
+            guestIndex++;
+            currentGuest = clone.GetComponent<Guest>();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }

@@ -73,4 +73,5 @@ public class CardBase : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
