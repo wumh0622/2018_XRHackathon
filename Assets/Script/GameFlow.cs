@@ -96,6 +96,7 @@ public class GameFlow : MonoBehaviour
         }
     }
 
+
     public void NextState()
     {
         currentState = (GameState)((int)currentState + 1);
@@ -109,5 +110,16 @@ public class GameFlow : MonoBehaviour
     public void ToState(GameState state)
     {
         currentState = state;
+
+    public bool DetuctMoney(int _needMoney)
+    {
+        if (_needMoney < money)
+            return false;
+        else
+        {
+            money -= _needMoney;
+            return true;
+        }
+
     }
 }

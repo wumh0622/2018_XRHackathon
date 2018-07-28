@@ -53,5 +53,4 @@ public class ShopItem : VRTK.VRTK_InteractableObject
             controller = currentUsingObject;
         }
     }
-
 }
