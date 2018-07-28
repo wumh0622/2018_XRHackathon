@@ -44,6 +44,8 @@ public class CardManager : MonoBehaviour
         test5
     }
 
+    [SerializeField] Transform[] diaCardSpawnPoint;
+    public List<CardData> dialogueCardData = new List<CardData>();
     public List<CardData> myCardData = new List<CardData>();
     public Dictionary<CardName, CardData> DataBase = new Dictionary<CardName, CardData>();
     public List<CardData> ShopData = new List<CardData>();
@@ -117,4 +119,18 @@ public class CardManager : MonoBehaviour
         Debug.Log("test成功");
     }
     #endregion
+
+    public void InitialDiaCard()
+    {
+        for (int i = 0; i < diaCardSpawnPoint.Length; i++)
+        {
+            if(diaCardSpawnPoint[i].gameObject.GetComponentInChildren<CardBase>() != null)
+            {
+                Destroy(diaCardSpawnPoint[i].gameObject.GetComponentInChildren<CardBase>().gameObject);
+            }
+            cardObj.transform.localPosition = Vector3.zero;
+            Instantiate(cardObj, diaCardSpawnPoint[i]);
+            cardObj.GetComponent<CardBase>().SetCardData(dialogueCardData[i]);
+        }
+    }
 }

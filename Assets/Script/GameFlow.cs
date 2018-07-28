@@ -20,7 +20,7 @@ public class GameFlow : MonoBehaviour
 
     public enum GameState
     {
-        Initial, WaitingGuest, GuestComing, GuestTime, PlayerTime, GameOver
+        Initial, WaitingGuest, GuestComing, GuestTime, PlayerTime, ShoppingTime, GameOver
     }
 
     GameState currentState = GameState.Initial;
@@ -53,7 +53,8 @@ public class GameFlow : MonoBehaviour
         {
 			case GameState.Initial:
 				Initial();
-				currentState = GameState.WaitingGuest;
+                CardManager.instance.InitialDiaCard();
+                currentState = GameState.WaitingGuest;
                 break;
             case GameState.WaitingGuest:
                 if (Time.timeSinceLevelLoad > WaitingTime)
