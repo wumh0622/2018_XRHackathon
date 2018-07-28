@@ -1660,7 +1660,7 @@ Camera:
   m_HDR: 0
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -3254,12 +3254,12 @@ Prefab:
     - target: {fileID: 108123867504729678, guid: decaf85fd55101f4799317111134ee4b,
         type: 2}
       propertyPath: m_BounceIntensity
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 108450420360438178, guid: decaf85fd55101f4799317111134ee4b,
         type: 2}
       propertyPath: m_BounceIntensity
-      value: 0.8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 108450420360438178, guid: decaf85fd55101f4799317111134ee4b,
         type: 2}
@@ -6367,7 +6367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16dd33ae177bd542a0a3e09f9be372b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TalkID: 0
   mydata: {fileID: 11400000, guid: 0126ceafca24b8647a55d9049359b4b2, type: 2}
   guestActions: 0000000000000000
   isWalk: 0
@@ -8009,6 +8008,26 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114247087560213234, guid: d1f8921b880c4fa47b95eab8e2c859f0,
+        type: 2}
+      propertyPath: touchHighlightColor.a
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 114247087560213234, guid: d1f8921b880c4fa47b95eab8e2c859f0,
+        type: 2}
+      propertyPath: touchHighlightColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114247087560213234, guid: d1f8921b880c4fa47b95eab8e2c859f0,
+        type: 2}
+      propertyPath: touchHighlightColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114247087560213234, guid: d1f8921b880c4fa47b95eab8e2c859f0,
+        type: 2}
+      propertyPath: touchHighlightColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f8921b880c4fa47b95eab8e2c859f0, type: 2}
   m_IsPrefabAsset: 0
@@ -8934,8 +8953,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059406654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.661, y: 1.421, z: -4.177}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.661, y: 0.18371, z: -3.857}
+  m_LocalScale: {x: 0.82, y: 0.82, z: 0.82}
   m_Children:
   - {fileID: 612301506}
   - {fileID: 1210936554}
@@ -14211,7 +14230,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -14222,13 +14241,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865263875}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.2034267, y: -0.79440516, z: 0.37043574, w: 0.43625146}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.000004, y: -122.453, z: 0}
 --- !u!1 &1867712555 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100244, guid: 7daabbd3555848248a121b07e8c5f551,
