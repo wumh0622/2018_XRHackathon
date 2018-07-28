@@ -52,9 +52,6 @@ public class ShopItem : VRTK.VRTK_InteractableObject
             clone.transform.position = currentUsingObject.gameObject.transform.position;
             controller = currentUsingObject;
         }
-
-
-
     }
 
 }
