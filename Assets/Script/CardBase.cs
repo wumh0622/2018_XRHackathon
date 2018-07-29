@@ -83,34 +83,43 @@ public class CardBase : MonoBehaviour
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Wind");
                 break;
             case CardManager.CardName.B3:
-
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Wind");
                 break;
 
             case CardManager.CardName.C1:
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Sad");
-                gameFlow.heart--;
+                GameFlow.instance.heart--;
+                GuestManager.instance.currentGuest.DecreseHeart();
                 break;
             case CardManager.CardName.C2:
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Sad");
-                gameFlow.heart--;
+                GameFlow.instance.heart--;
+                GuestManager.instance.currentGuest.DecreseHeart();
                 break;
             case CardManager.CardName.C3:
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 2);
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
-                gameFlow.heart++;
+                GameFlow.instance.heart++;
+                GuestManager.instance.currentGuest.CreseHeart();
                 break;
 
             case CardManager.CardName.D1:
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 0);
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                GameFlow.instance.heart++;
+                GuestManager.instance.currentGuest.CreseHeart();
                 break;
             case CardManager.CardName.D2:
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 1);
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                GameFlow.instance.heart++;
+                GuestManager.instance.currentGuest.CreseHeart();
                 break;
             case CardManager.CardName.D3:
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 2);
                 GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                GameFlow.instance.heart--;
+                GuestManager.instance.currentGuest.DecreseHeart();
                 break;
             default:
                 break;

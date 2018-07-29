@@ -10,7 +10,7 @@ public class CardManager_Editor : Editor {
         CardManager _cardManager = (CardManager)target;
 
         serializedObject.Update();
-
+		EditorGUILayout.PropertyField(serializedObject.FindProperty("diaCardSpawnPoint"), true);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("dialogueCardData"), true);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("myCardData"), true);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("ShopData"), true);

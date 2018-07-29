@@ -7,7 +7,7 @@ using VRTK.Highlighters;
 public class ShopItem : VRTK.VRTK_InteractableObject
 {
     [Space(50)]
-    [SerializeField]CardManager.CardName cardToGet;
+    [SerializeField] CardManager.CardName cardToGet;
     GameObject cardPrefab;
 
     GameObject clone;
@@ -31,22 +31,27 @@ public class ShopItem : VRTK.VRTK_InteractableObject
             controller.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
             controller.gameObject.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = clone.GetComponent<VRTK_InteractableObject>();
             controller.gameObject.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
-            if(controller.gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null)
+            if (controller.gameObject.GetComponent<VRTK_InteractGrab>().GetGrabbedObject() != null)
             {
                 controller = null;
                 clone = null;
             }
         }
+
     }
 
     public override void StartUsing(VRTK_InteractUse currentUsingObject)
-	{
+    {
         base.StartUsing(currentUsingObject);
         Debug.Log("StartUsing");
         //currentUsingObject.gameObject.GetComponent<VRTK_InteractGrab>()
         //GameObject _obj = 
         if (CardManager.instance.GetCardAmount(cardToGet) > 0)
         {
+            foreach (var item in GetComponentsInChildren<ParticleSystem>())
+            {
+                item.Play();
+            }
             clone = Instantiate(cardPrefab, currentUsingObject.gameObject.transform.localPosition, Quaternion.identity);
             CardManager.instance.GetCardData(cardToGet, clone.GetComponent<CardBase>());
             clone.transform.position = currentUsingObject.gameObject.transform.position;

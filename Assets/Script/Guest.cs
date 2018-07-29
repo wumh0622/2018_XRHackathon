@@ -7,6 +7,8 @@ using UnityEditor;
 
 public class Guest : MonoBehaviour
 {
+
+    GameObject player;
     private NavMeshAgent nav;
     public GuestData mydata;
     public GuestManager.GuestName guestName;
@@ -19,6 +21,10 @@ public class Guest : MonoBehaviour
     private CardManager Card_Manager { get { if (cardManager == null) cardManager = CardManager.instance; return cardManager; } }
 
     public Canvas delCanvas;
+    public GameObject delCanvasRoot;
+
+    [SerializeField] ParticleSystem heartEffect;
+    [SerializeField] ParticleSystem heartBreakEffect;
 
     void Awake()
     {
@@ -29,21 +35,23 @@ public class Guest : MonoBehaviour
 
     void Start()
     {
-        delCanvas = GetComponentInChildren<Canvas>();
+        player = GameFlow.instance.player;
+        //delCanvas = GetComponentInChildren<Canvas>();
         //nav.updateRotation = false;
         guestActions = mydata.myActions;
     }
-    
+
     void Kill()
     {
 
         Destroy(gameObject);
 
-    } 
+    }
 
     void Update()
     {
-        if(nav.velocity.magnitude > .1f)
+
+        if (nav.velocity.magnitude > .1f)
         {
             gameObject.GetComponent<Animator>().SetBool("isWalk", true);
         }
@@ -51,6 +59,8 @@ public class Guest : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().SetBool("isWalk", false);
         }
+        delCanvasRoot.gameObject.transform.LookAt(player.transform);
+
     }
 
     public void GuestMove(Vector3 _pos)
@@ -79,7 +89,7 @@ public class Guest : MonoBehaviour
                     needCardNumber = mydata.myneeds[ran].Number;
                     GetComponent<Animator>().SetInteger("Random", Random.Range(0, 2));
                     GetComponent<Animator>().SetTrigger("Speek");
-                    ComicSystem.instance.ContentProcess( string.Format("我要{0}，數量 : {1}", mydata.myneeds[ran]._cardName, mydata.myneeds[ran].Number), GameFlow.GameState.PlayerTime);
+                    ComicSystem.instance.ContentProcess(string.Format("我要{0}個{1}", mydata.myneeds[ran].Number, Card_Manager.myCardData.Find(x => x.cardName == mydata.myneeds[ran]._cardName).cardNameText), GameFlow.GameState.PlayerTime);
                 }
                 break;
             case GuestManager.myAction.Talk:
@@ -87,7 +97,8 @@ public class Guest : MonoBehaviour
                     if (talkLevel < mydata.mytalks.Count)
                     {
                         //產生玩家對話卡
-                       /* List<CardManager.CardData>*/tt = new List<CardManager.CardData>();
+                        /* List<CardManager.CardData>*/
+                        tt = new List<CardManager.CardData>();
                         List<CardManager.CardData> playerTalkCards = Card_Manager.dialogueCardData.FindAll(x => x.guestN == guestName);
                         foreach (var card in playerTalkCards)
                         {
@@ -105,9 +116,9 @@ public class Guest : MonoBehaviour
                                 }
                             }
                         }
-                                            GetComponent<Animator>().SetInteger("Random", Random.Range(0, 2));
-                    GetComponent<Animator>().SetTrigger("Speek");
-                        ComicSystem.instance.ContentProcess(string.Format("Question : " + mydata.mytalks[talkLevel].questiom.sentence),GameFlow.GameState.PlayerTime);
+                        GetComponent<Animator>().SetInteger("Random", Random.Range(0, 2));
+                        GetComponent<Animator>().SetTrigger("Speek");
+                        ComicSystem.instance.ContentProcess(string.Format("Question : " + mydata.mytalks[talkLevel].questiom.sentence), GameFlow.GameState.PlayerTime);
                         Card_Manager.InitialDiaCard(tt);
                     }
                     else
@@ -123,13 +134,13 @@ public class Guest : MonoBehaviour
                 break;
         }
 
-        
+
     }
 
     public void GuestGoAction()
     {
 
-        if (_actionInt > guestActions.Count-1)
+        if (_actionInt > guestActions.Count - 1)
         {
             GameFlow.instance.ToState(GameFlow.GameState.WaitingGuest);
             GuestLeaving();
@@ -148,30 +159,33 @@ public class Guest : MonoBehaviour
             if (needCardNumber == _amount)
             {
                 Debug.Log("完成");
+                GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
                 return true;
             }
             else
             {
                 Debug.Log("數量不夠，失敗");
+                GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
                 return false;
             }
         }
         else
         {
             Debug.Log("失敗");
+            GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
             return false;
-        }      
+        }
     }
     //玩家回應NPC Question用的
     public void OnPlayerResponse(CardManager.CardName _card)
     {
         Card_Manager.ClerAllSpace();
 
-        if (talkLevel >= mydata.mytalks.Count - 1)
+        //if (talkLevel >= mydata.mytalks.Count - 1)
+        if (_actionInt > guestActions.Count - 1)
         {
             talkLevel = 0;
             Debug.Log("以結尾，下面一位");
-            _actionInt = 9999;
             GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
             return;
         }
@@ -187,17 +201,17 @@ public class Guest : MonoBehaviour
                         talkLevel = 0;
                         Debug.Log("以結尾，下面一位");
                         _actionInt = 9999;
-                        GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
+                        ComicSystem.instance.ContentProcess(item.sentence, GameFlow.GameState.GuestTime);
                         return;
                     }
-                    ComicSystem.instance.ContentProcess(item.sentence,GameFlow.GameState.GuestTime);
+                    ComicSystem.instance.ContentProcess(item.sentence, GameFlow.GameState.GuestTime);
                     Debug.Log("下一個level : " + item.OpenLevel);
                     talkLevel = item.OpenLevel;
                     return;
                 }
                 else
                 {
-                    
+
                     Debug.Log("ERRORRRRR" + _card);
                 }
             }
@@ -218,9 +232,9 @@ public class Guest : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(GameFlow.instance.currentState == GameFlow.GameState.PlayerTime)
+        if (GameFlow.instance.currentState == GameFlow.GameState.PlayerTime)
         {
-        CardBase cardGet = other.GetComponent<CardBase>();
+            CardBase cardGet = other.GetComponent<CardBase>();
             if (cardGet != null)
             {
                 if (guestActions[_actionInt] == GuestManager.myAction.Request)
@@ -258,14 +272,35 @@ public class Guest : MonoBehaviour
     public void CloseDel()
     {
         Debug.Log("CloseDel");
-        delCanvas.GetComponent<Animator>().SetBool("Open",false);
+        delCanvas.GetComponent<Animator>().SetBool("Open", false);
         delCanvas.GetComponent<Animator>().SetBool("Close", true);
     }
 
     public void Reset()
     {
-        delCanvas.GetComponent<Animator>().SetBool("Open",false);
+        delCanvas.GetComponent<Animator>().SetBool("Open", false);
         delCanvas.GetComponent<Animator>().SetBool("Close", false);
+    }
+
+    public void CreseHeart()
+    {
+        heartEffect.Play();
+        foreach (var item in heartEffect.gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            item.Play();
+        }
+        //heartEffect.Play();
+        heartEffect.gameObject.GetComponent<AudioSource>().Play();
+    }
+    public void DecreseHeart()
+    {
+
+                foreach (var item in heartBreakEffect.gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            item.Play();
+        }
+        //heartBreakEffect.Play();
+        heartBreakEffect.gameObject.GetComponent<AudioSource>().Play();
     }
 }
 

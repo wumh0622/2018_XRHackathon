@@ -20,6 +20,8 @@ public class GameFlow : MonoBehaviour
     [SerializeField] Transform guestWalkTarget;
     [SerializeField] public Transform guestLeaveTarget;
 
+    public GameObject player;
+
 
     public enum GameState
     {
