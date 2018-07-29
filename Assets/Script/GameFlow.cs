@@ -7,8 +7,8 @@ public class GameFlow : MonoBehaviour
 
     public static GameFlow instance;
 
-    [SerializeField] int money = 10;
-    [SerializeField] int heart = 10;
+    [SerializeField] public int money = 10;
+    [SerializeField] public int heart = 10;
 
     [SerializeField] int WaitingTime;
 
@@ -23,10 +23,10 @@ public class GameFlow : MonoBehaviour
 
     public enum GameState
     {
-        GameMenu,Initial, WaitingGuest, GuestSpawn, GuestComing, GuestTime, PlayerTime, GameOver
+        GameMenu,Initial, WaitingGuest, GuestSpawn, GuestComing, GuestTime, PlayerTime, GameOver, Speaking
     }
 
-    GameState currentState = GameState.GameMenu;
+    public GameState currentState = GameState.GameMenu;
 
     void Awake()
     {
@@ -44,8 +44,8 @@ public class GameFlow : MonoBehaviour
     void Initial()
     {
         //初始化
-        money = 10;
-        heart = 10;
+        money = 5;
+        heart = 5;
         guestNum = 0;
     }
 
@@ -98,7 +98,7 @@ public class GameFlow : MonoBehaviour
                 break;
             case GameState.GuestTime:
                 Debug.Log("GuestTime");
-                currentState = GameState.PlayerTime;
+                currentState = GameState.Speaking;
                 GuestManager.instance.currentGuest.GuestGoAction();
                 break;
             case GameState.PlayerTime:
@@ -108,6 +108,14 @@ public class GameFlow : MonoBehaviour
             case GameState.GameOver:
                 Debug.Log("Over");
                 break;
+
+                case GameState.Speaking:
+                break;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            currentState = GameState.Initial;
         }
     }
 

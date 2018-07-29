@@ -8,7 +8,7 @@ using UnityEditor;
 public class Guest : MonoBehaviour
 {
     private NavMeshAgent nav;
-    private GuestData mydata;
+    public GuestData mydata;
     public GuestManager.GuestName guestName;
     public List<GuestManager.myAction> guestActions = new List<GuestManager.myAction>();
     public bool isWalk;
@@ -18,25 +18,40 @@ public class Guest : MonoBehaviour
     private CardManager cardManager;
     private CardManager Card_Manager { get { if (cardManager == null) cardManager = CardManager.instance; return cardManager; } }
 
+    public Canvas delCanvas;
+
     void Awake()
     {
         string filePath = string.Format(@"Assets/{0}.asset", guestName);
         nav = GetComponent<NavMeshAgent>();
-        mydata = (GuestData)AssetDatabase.LoadAssetAtPath(filePath, typeof(GuestData));
+        //mydata = (GuestData)AssetDatabase.LoadAssetAtPath(filePath, typeof(GuestData));
     }
 
     void Start()
     {
-        nav.updateRotation = false;
+        delCanvas = GetComponentInChildren<Canvas>();
+        //nav.updateRotation = false;
         guestActions = mydata.myActions;
     }
     
     void Kill()
     {
 
-                Destroy(gameObject);
+        Destroy(gameObject);
 
     } 
+
+    void Update()
+    {
+        if(nav.velocity.magnitude > .1f)
+        {
+            gameObject.GetComponent<Animator>().SetBool("isWalk", true);
+        }
+        else
+        {
+            gameObject.GetComponent<Animator>().SetBool("isWalk", false);
+        }
+    }
 
     public void GuestMove(Vector3 _pos)
     {
@@ -52,6 +67,7 @@ public class Guest : MonoBehaviour
     int talkLevel = 0;//用來選擇NPC對話組
     CardManager.CardName currentCardName;//NPC要求的產品
     int needCardNumber;//NPC要求產品數量
+    public List<CardManager.CardData> tt;
     void GuestAction(GuestManager.myAction _myaction)
     {
         switch (_myaction)
@@ -61,7 +77,9 @@ public class Guest : MonoBehaviour
                     int ran = Random.Range(0, mydata.myneeds.Count);
                     currentCardName = mydata.myneeds[ran]._cardName;
                     needCardNumber = mydata.myneeds[ran].Number;
-                    Debug.LogFormat("我要{0}，數量 : {1}", mydata.myneeds[ran]._cardName, mydata.myneeds[ran].Number);
+                    GetComponent<Animator>().SetInteger("Random", Random.Range(0, 2));
+                    GetComponent<Animator>().SetTrigger("Speek");
+                    ComicSystem.instance.ContentProcess( string.Format("我要{0}，數量 : {1}", mydata.myneeds[ran]._cardName, mydata.myneeds[ran].Number), GameFlow.GameState.PlayerTime);
                 }
                 break;
             case GuestManager.myAction.Talk:
@@ -69,7 +87,7 @@ public class Guest : MonoBehaviour
                     if (talkLevel < mydata.mytalks.Count)
                     {
                         //產生玩家對話卡
-                        List<CardManager.CardData> tt = new List<CardManager.CardData>();
+                       /* List<CardManager.CardData>*/tt = new List<CardManager.CardData>();
                         List<CardManager.CardData> playerTalkCards = Card_Manager.dialogueCardData.FindAll(x => x.guestN == guestName);
                         foreach (var card in playerTalkCards)
                         {
@@ -78,11 +96,18 @@ public class Guest : MonoBehaviour
                                 if (card.cardName == cardOpen)
                                 {
                                     tt.Add(card);
+                                    for (int i = 0; i < tt.Count; i++)
+                                    {
+
+                                        Debug.Log("tt的cardName" + tt[i].cardName);
+                                    }
                                     break;
                                 }
                             }
                         }
-                        Debug.Log("Question : " + mydata.mytalks[talkLevel].questiom.sentence);
+                                            GetComponent<Animator>().SetInteger("Random", Random.Range(0, 2));
+                    GetComponent<Animator>().SetTrigger("Speek");
+                        ComicSystem.instance.ContentProcess(string.Format("Question : " + mydata.mytalks[talkLevel].questiom.sentence),GameFlow.GameState.PlayerTime);
                         Card_Manager.InitialDiaCard(tt);
                     }
                     else
@@ -140,10 +165,14 @@ public class Guest : MonoBehaviour
     //玩家回應NPC Question用的
     public void OnPlayerResponse(CardManager.CardName _card)
     {
+        Card_Manager.ClerAllSpace();
+
         if (talkLevel >= mydata.mytalks.Count - 1)
         {
             talkLevel = 0;
             Debug.Log("以結尾，下面一位");
+            _actionInt = 9999;
+            GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
             return;
         }
 
@@ -153,9 +182,23 @@ public class Guest : MonoBehaviour
             {
                 if (i == _card)
                 {
+                    if (item.OpenLevel < 0)
+                    {
+                        talkLevel = 0;
+                        Debug.Log("以結尾，下面一位");
+                        _actionInt = 9999;
+                        GameFlow.instance.ToState(GameFlow.GameState.GuestTime);
+                        return;
+                    }
+                    ComicSystem.instance.ContentProcess(item.sentence,GameFlow.GameState.GuestTime);
                     Debug.Log("下一個level : " + item.OpenLevel);
                     talkLevel = item.OpenLevel;
                     return;
+                }
+                else
+                {
+                    
+                    Debug.Log("ERRORRRRR" + _card);
                 }
             }
         }
@@ -175,22 +218,27 @@ public class Guest : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        CardBase cardGet = other.GetComponent<CardBase>();
-        if(cardGet!=null)
+        if(GameFlow.instance.currentState == GameFlow.GameState.PlayerTime)
         {
-            if(guestActions[_actionInt] == GuestManager.myAction.Request)
+        CardBase cardGet = other.GetComponent<CardBase>();
+            if (cardGet != null)
             {
-                CompleteGuestNeed(cardGet.cardName, 1);
-                _actionInt++;
-                GameFlow.instance.BackState();
+                if (guestActions[_actionInt] == GuestManager.myAction.Request)
+                {
+                    CompleteGuestNeed(cardGet.cardName, 1);
+                    _actionInt++;
+                    cardGet.StartFunction();
+                    //GameFlow.instance.BackState();
+                }
+                else if (guestActions[_actionInt] == GuestManager.myAction.Talk)
+                {
+                    OnPlayerResponse(cardGet.cardName);
+                    _actionInt++;
+                    cardGet.StartFunction();
+                    //GameFlow.instance.BackState();
+                }
+                Destroy(other.gameObject);
             }
-            else if(guestActions[_actionInt] == GuestManager.myAction.Talk)
-            {
-                OnPlayerResponse(cardGet.cardName);
-                _actionInt++;
-                GameFlow.instance.BackState();
-            }
-            Destroy(other.gameObject);
         }
     }
 
@@ -198,6 +246,26 @@ public class Guest : MonoBehaviour
     {
         nav.SetDestination(GameFlow.instance.guestLeaveTarget.position);
         Invoke("Kill", 3);
+    }
+
+    public void openDel()
+    {
+        Debug.Log("openDel");
+        delCanvas.GetComponent<Animator>().SetBool("Open", true);
+        delCanvas.GetComponent<Animator>().SetBool("Close", false);
+    }
+
+    public void CloseDel()
+    {
+        Debug.Log("CloseDel");
+        delCanvas.GetComponent<Animator>().SetBool("Open",false);
+        delCanvas.GetComponent<Animator>().SetBool("Close", true);
+    }
+
+    public void Reset()
+    {
+        delCanvas.GetComponent<Animator>().SetBool("Open",false);
+        delCanvas.GetComponent<Animator>().SetBool("Close", false);
     }
 }
 

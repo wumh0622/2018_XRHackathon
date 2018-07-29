@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114307755133205242}
   - component: {fileID: 114604122827075880}
   - component: {fileID: 54941509230260940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,8 +42,7 @@ GameObject:
   - component: {fileID: 4640795929126316}
   - component: {fileID: 33438230001644940}
   - component: {fileID: 23588392107171814}
-  - component: {fileID: 64988521135916376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +59,7 @@ GameObject:
   - component: {fileID: 224320940546760350}
   - component: {fileID: 222232868630257236}
   - component: {fileID: 114317786850812486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +77,7 @@ GameObject:
   - component: {fileID: 223378331601578826}
   - component: {fileID: 114773194927306058}
   - component: {fileID: 114282933522245254}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +94,7 @@ GameObject:
   - component: {fileID: 224044444023244546}
   - component: {fileID: 222124219318781032}
   - component: {fileID: 114766750808027540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: About
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +111,7 @@ GameObject:
   - component: {fileID: 224264421151248538}
   - component: {fileID: 222677595259603820}
   - component: {fileID: 114233711148841818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,20 +245,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64988521135916376
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415803202762708}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65354615039879936
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -304,7 +289,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!114 &114282933522245254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,12 +318,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSpecies: 1
-  cardName: 3
-  nameText: {fileID: 114488313294164468, guid: 087e7e966f89a674bb9c41ea52b7f413, type: 2}
-  cardImage: {fileID: 114012006364183354, guid: 087e7e966f89a674bb9c41ea52b7f413,
-    type: 2}
-  description: {fileID: 114476395514509664, guid: 087e7e966f89a674bb9c41ea52b7f413,
-    type: 2}
+  cardName: 0
+  nameText: {fileID: 114233711148841818}
+  cardImage: {fileID: 114317786850812486}
+  description: {fileID: 114766750808027540}
 --- !u!114 &114317786850812486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -428,7 +411,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u7389\u862D\u5B38\uFF0C\u9019\u2026\u2026\u554F\u984C\u6BD4\u8F03\u79C1\u4EBA\u3002\u53EF\u80FD\u6211\u4E0D\u592A\u65B9\u4FBF\u2026\u2026"
 --- !u!114 &114773194927306058
 MonoBehaviour:
   m_ObjectHideFlags: 1

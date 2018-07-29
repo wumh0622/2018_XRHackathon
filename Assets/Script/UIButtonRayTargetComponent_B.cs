@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(BoxCollider))]
-public class UIButtonRayTargetComponent : MonoBehaviour {
+public class UIButtonRayTargetComponent_B : MonoBehaviour {
 
 	[Tooltip("手動更改觸發器大小 預設關閉")]
     [SerializeField] bool manualCollider = false;
@@ -14,9 +14,7 @@ public class UIButtonRayTargetComponent : MonoBehaviour {
     BoxCollider boxCollider;
 	PointerEventData pointer = new PointerEventData(EventSystem.current);
 	bool isClick;
-
-    [SerializeField] bool custom;
-
+	
 
     void Awake()
 	{
@@ -58,16 +56,7 @@ public class UIButtonRayTargetComponent : MonoBehaviour {
 	{
 		if(isClick == false)
 		{
-            if (custom == false)
-            {
-                ExecuteEvents.Execute(targetButton.gameObject, pointer, ExecuteEvents.pointerDownHandler);
-                ExecuteEvents.Execute(targetButton.gameObject, pointer, ExecuteEvents.pointerClickHandler);
-                pointer = new PointerEventData(EventSystem.current);
-            }
-			else
-			{
-                ComicSystem.instance.nextContent();
-            }
+            ComicSystem.instance.nextContent();
             isClick = true;
 		}
 	}

@@ -57,7 +57,7 @@ public class CardManager : MonoBehaviour
         Exit
     }
 
-    [SerializeField] Transform[] diaCardSpawnPoint;
+    public Transform[] diaCardSpawnPoint;
     public List<CardData> dialogueCardData = new List<CardData>();
     public List<CardData> myCardData = new List<CardData>();
     public Dictionary<CardName, CardData> DataBase = new Dictionary<CardName, CardData>();
@@ -144,19 +144,31 @@ public class CardManager : MonoBehaviour
     public void InitialDiaCard(List<CardData> TalkCards)
     {
         //清除用
+        /*foreach (var point in diaCardSpawnPoint)
+        {
+            if (point.gameObject.GetComponentInChildren<CardBase>() != null)
+            {
+                Destroy(point.gameObject.GetComponentInChildren<CardBase>().gameObject);
+            }
+        }*/
+
+        for (int i = 0; i < TalkCards.Count; i++)
+        {
+            cardObj.transform.localPosition = Vector3.zero;
+            GameObject _card = Instantiate(cardObj, diaCardSpawnPoint[i]);
+            _card.GetComponent<CardBase>().SetCardData(TalkCards[i]);
+            Debug.Log("_card's cardName" + _card.GetComponent<CardBase>().cardName);
+        }
+    }
+
+    public void ClerAllSpace()
+    {
         foreach (var point in diaCardSpawnPoint)
         {
             if (point.gameObject.GetComponentInChildren<CardBase>() != null)
             {
                 Destroy(point.gameObject.GetComponentInChildren<CardBase>().gameObject);
             }
-        }
-
-        for (int i = 0; i < TalkCards.Count; i++)
-        {
-            cardObj.transform.localPosition = Vector3.zero;
-            Instantiate(cardObj, diaCardSpawnPoint[i]);
-            cardObj.GetComponent<CardBase>().SetCardData(TalkCards[i]);
         }
     }
 }

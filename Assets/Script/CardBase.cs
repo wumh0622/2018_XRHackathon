@@ -28,7 +28,18 @@ public class CardBase : MonoBehaviour
             return function;
         }
     }*/
-
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    CardManager.CardName _c;
+    void Update()
+    {
+        if (_c != cardName)
+        {
+            _c = cardName;
+            Debug.Log(cardName);
+        }
+    }
     public void SetCardData(CardManager.CardData _data)
     {
         cardSpecies = _data.cardSpecies;
@@ -40,6 +51,8 @@ public class CardBase : MonoBehaviour
             cardImage.sprite = _data.cardImage;
         if (description != null)
             description.text = _data.description + _data.cardText;
+
+        Debug.Log("SetCardData");
     }
 
     public void MyisExitCard()
@@ -50,7 +63,58 @@ public class CardBase : MonoBehaviour
     //執行功能
     public void StartFunction()
     {
-        //Function1();
+        switch (cardName)
+        {
+            case CardManager.CardName.A1:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Wind");
+                break;
+            case CardManager.CardName.A2:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Wind");
+                break;
+            case CardManager.CardName.A3:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Wind");
+                break;
+
+            case CardManager.CardName.B1:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 2);
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                break;
+            case CardManager.CardName.B2:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Wind");
+                break;
+            case CardManager.CardName.B3:
+
+                break;
+
+            case CardManager.CardName.C1:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Sad");
+                gameFlow.heart--;
+                break;
+            case CardManager.CardName.C2:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Sad");
+                gameFlow.heart--;
+                break;
+            case CardManager.CardName.C3:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 2);
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                gameFlow.heart++;
+                break;
+
+            case CardManager.CardName.D1:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 0);
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                break;
+            case CardManager.CardName.D2:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 1);
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                break;
+            case CardManager.CardName.D3:
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetInteger("Random", 2);
+                GuestManager.instance.currentGuest.gameObject.GetComponent<Animator>().SetTrigger("Speek");
+                break;
+            default:
+                break;
+        }
     }
 
     public void BuyThisCard()
