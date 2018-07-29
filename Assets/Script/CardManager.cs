@@ -193,24 +193,18 @@ public class CardManager : MonoBehaviour
     public CardData _NewCardData;
     public void AddNewData()
     {
-        if (_NewCardData.guestN != GuestManager.GuestName.None)
-        {
-            CardData _NewCardData = new CardData();
-            _NewCardData.guestN = _guestN;
-            _NewCardData.cardSpecies = _cardSpecies;
-            _NewCardData.cardName = _cardName;
-            _NewCardData.cardNameText = _cardNameText;
-            _NewCardData.cardImage = _cardImage;
-            _NewCardData.needMoney = _needMoney;
-            _NewCardData.cardAmount = _cardAmount;
-            _NewCardData.description = _description;
-            _NewCardData.cardText = _cardText;
-            dialogueCardData.Add(_NewCardData);
-        }
-        else
-        {
-            Debug.LogError("GuestName can't null");
-        }
+        CardData _NewCardData = new CardData();
+        _NewCardData.guestN = _guestN;
+        _NewCardData.cardSpecies = _cardSpecies;
+        _NewCardData.cardName = _cardName;
+        _NewCardData.cardNameText = _cardNameText;
+        _NewCardData.cardImage = _cardImage;
+        _NewCardData.needMoney = _needMoney;
+        _NewCardData.cardAmount = _cardAmount;
+        _NewCardData.description = _description;
+        _NewCardData.cardText = _cardText;
+        dialogueCardData.Add(_NewCardData);
+        Debug.LogFormat("新增{0}成功", _guestN);
     }
 
     public int MinNumber, MaxNumber;

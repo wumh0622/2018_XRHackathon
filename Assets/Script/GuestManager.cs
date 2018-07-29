@@ -16,7 +16,8 @@ public class GuestManager : MonoBehaviour
     {
         None,
         bigMom,
-        oldPostman
+        oldPostman,
+        girl
     }
 	//客人動作，買東西或談話
     public enum myAction

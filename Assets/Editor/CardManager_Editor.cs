@@ -36,8 +36,8 @@ public class CardManager_Editor : Editor {
 
 		GUILayout.Space(10);
 		GUILayout.Label("改變GuestName用");
-        _cardManager.MinNumber = EditorGUILayout.IntField(_cardManager.MinNumber);
-		_cardManager.MaxNumber = EditorGUILayout.IntField(_cardManager.MaxNumber);
+        _cardManager.MinNumber = EditorGUILayout.IntField("MinIndex", _cardManager.MinNumber);
+		_cardManager.MaxNumber = EditorGUILayout.IntField("MaxIndex", _cardManager.MaxNumber);
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("newGuestName"));
 		GUILayout.Space(5);
         if(GUILayout.Button("改變GuestName"))
