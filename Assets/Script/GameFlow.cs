@@ -122,10 +122,16 @@ public class GameFlow : MonoBehaviour
         currentState = (GameState)((int)currentState - 1);
     }
 
-    public void ToState(GameState state)
+    public void ToState(GameState _stat)
     {
-        currentState = state;
-        print(state);
+        currentState = _stat;
+        //print(state);
+    }
+
+    public void ToState(int _i)
+    {
+        GameState s = new GameState();
+        currentState = (GameState)((int)s + _i);
     }
 
     public bool DetuctMoney(int _needMoney)
