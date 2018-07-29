@@ -53,7 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\CardManager_Editor.cs" />
      <Compile Include="Assets\Editor\GuestData_Editor.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
      <Compile Include="Assets\SteamVR\Editor\SteamVR_Editor.cs" />
      <Compile Include="Assets\SteamVR\Editor\SteamVR_Preferences.cs" />
      <Compile Include="Assets\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
@@ -333,6 +335,12 @@
  </Reference>
  <Reference Include="DOTweenEditor">
  <HintPath>F:/XRHackthon/2018_XRHackathon/Assets/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="JMOAssets">
+ <HintPath>F:/XRHackthon/2018_XRHackathon/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
+ </Reference>
+ <Reference Include="JMOAssets_CartoonFXFreeWelcome">
+ <HintPath>F:/XRHackthon/2018_XRHackathon/Assets/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>E:/Program Files/Unity2018/2018.2/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>

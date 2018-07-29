@@ -43,7 +43,7 @@ MonoBehaviour:
     - sentence: "\u662F\u5594\u2026\u2026\u7121\u8981\u7DCA\u5566!\u5927\u5BB6\u650F\u6709\u6C92\u9592\u7684\u6642\u9593\u3002\u6211\u4E5F\u53EA\u662F\u63D0\u9192\u4F60\u800C\u5DF2\u5566"
       OpenLevel: 3
       NeedToTrigger: 05000000
-    - sentence: 
+    - sentence: "(\u6C23)(-`\u30A7\xB4-\u256C)"
       OpenLevel: -1
       NeedToTrigger: 06000000
   - level: 2

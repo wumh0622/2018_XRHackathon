@@ -151,11 +151,12 @@ public class CardManager : MonoBehaviour
                 Destroy(point.gameObject.GetComponentInChildren<CardBase>().gameObject);
             }
         }*/
-
+        Debug.Log("InitialDiaCard");
         for (int i = 0; i < TalkCards.Count; i++)
         {
-            cardObj.transform.localPosition = Vector3.zero;
+            
             GameObject _card = Instantiate(cardObj, diaCardSpawnPoint[i]);
+            _card.transform.position = diaCardSpawnPoint[i].transform.position;
             _card.GetComponent<CardBase>().SetCardData(TalkCards[i]);
             Debug.Log("_card's cardName" + _card.GetComponent<CardBase>().cardName);
         }
