@@ -171,4 +171,56 @@ public class CardManager : MonoBehaviour
             }
         }
     }
+
+    #region Editor編輯用
+        public GuestManager.GuestName _guestN;
+        [Tooltip("此卡種類")]
+        public CardSpecies _cardSpecies;
+        [Tooltip("此卡數據鑰匙")]
+        public CardName _cardName;
+        [Tooltip("此卡名稱")]
+        public string _cardNameText;
+        [Tooltip("此卡圖片")]
+        public Sprite _cardImage;
+        [Tooltip("購買金錢")]
+        public int _needMoney;
+        [Tooltip("此卡數量")]
+        public int _cardAmount;
+        [Tooltip("此卡描述")]
+        public string _description;
+        [Tooltip("此卡述說的字句")]
+        public string _cardText;
+    public CardData _NewCardData;
+    public void AddNewData()
+    {
+        if (_NewCardData.guestN != GuestManager.GuestName.None)
+        {
+            CardData _NewCardData = new CardData();
+            _NewCardData.guestN = _guestN;
+            _NewCardData.cardSpecies = _cardSpecies;
+            _NewCardData.cardName = _cardName;
+            _NewCardData.cardNameText = _cardNameText;
+            _NewCardData.cardImage = _cardImage;
+            _NewCardData.needMoney = _needMoney;
+            _NewCardData.cardAmount = _cardAmount;
+            _NewCardData.description = _description;
+            _NewCardData.cardText = _cardText;
+            dialogueCardData.Add(_NewCardData);
+        }
+        else
+        {
+            Debug.LogError("GuestName can't null");
+        }
+    }
+
+    public int MinNumber, MaxNumber;
+    public GuestManager.GuestName newGuestName;
+    public void changeGuestName()
+    {
+        for (int i = MinNumber; i <= MaxNumber; i++)
+        {
+            dialogueCardData[i].guestN = newGuestName;
+        }
+    }
+    #endregion
 }

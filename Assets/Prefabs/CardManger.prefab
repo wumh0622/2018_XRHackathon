@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1782336502837436}
+  m_RootGameObject: {fileID: 1777957108687764}
   m_IsPrefabAsset: 1
---- !u!1 &1782336502837436
+--- !u!1 &1777957108687764
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4585179219034956}
-  - component: {fileID: 114377053093655148}
+  - component: {fileID: 4874160761843188}
+  - component: {fileID: 114169904603395850}
   m_Layer: 0
   m_Name: CardManger
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4585179219034956
+--- !u!4 &4874160761843188
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782336502837436}
+  m_GameObject: {fileID: 1777957108687764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,18 +40,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114377053093655148
+--- !u!114 &114169904603395850
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782336502837436}
+  m_GameObject: {fileID: 1777957108687764}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12350addc9b8aaf47973d61b74ea2662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diaCardSpawnPoint: []
+  diaCardSpawnPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   dialogueCardData:
   - guestN: 1
     cardSpecies: 1
@@ -161,15 +166,127 @@ MonoBehaviour:
     cardAmount: 0
     description: 
     cardText: "\u7389\u862D\u5B38\uFF0C\u6211\u53EF\u80FD\u6C92\u8FA6\u6CD5\u5E6B\u59B3\u6253\u6298\u5566\uFF0C\u8ACB\u898B\u8AD2\u3002"
-  myCardData:
-  - guestN: 0
-    cardSpecies: 0
+  - guestN: 2
+    cardSpecies: 1
     cardName: 1
     cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\uFF0C\u6211\u662F\u53EB\u4FCA\u9F8D\uFF0C\u4E0D\u662F\u99FF\u99AC\u5566\u3002\u9084\u6709\u9019\u5C01\u4FE1\u4E0A\u9762\u5BEB\u662F\u6DD1\u82AC\u59E8\u7684\u3002"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 2
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\uFF0C\u6211\u5176\u5BE6\u662F\u53EB\u4FCA\u9F8D\uFF0C\u4E0D\u662F\u99FF\u99AC\u5566\u3002"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 3
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\uFF0C\u4FE1\u4E0A\u5BEB\u9019\u662F\u6DD1\u82AC\u59E8\u7684\u8036\uFF0C\u4F60\u8981\u4E0D\u8981\u5728\u78BA\u8A8D\u4E00\u6B21\uFF1F"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 4
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\u89BA\u5F97\u548C\u93AE\u88E1\u7684\u4EBA\u804A\u5929\u4E0D\u597D\u55CE?"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 5
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\uFF0C\u8ACB\u554F\u5C0F\u674E\u662F\u8AB0\u5BB6\u7684\u4EBA\u7269\u554A?"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 7
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u798F\u4F2F\u4F60\u4E0D\u64D4\u5FC3\u55CE?\u5C31\u662F\u2026\u2026\u95DC\u65BC\u81EA\u5DF1\u7684\u8EAB\u9AD4\u72C0\u6CC1\u3002"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 8
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u7562\u7ADF\u767C\u751F\u4E86\u90A3\u6A23\u7684\u4E8B\uFF0C\u5927\u5BB6\u6703\u7DCA\u5F35\u662F\u56E0\u70BA\u91CD\u8996\u60A8\u554A\u3002"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 10
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u90A3\u5F8C\u4F86\u767C\u751F\u4E86\u751A\u9EBC\u4E8B?\u4F60\u5011\u6709\u67E5\u770B\u5C0D\u65B9\u60C5\u6CC1\u55CE?"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 11
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u9019\u9EBC\u5371\u96AA!\u90A3\u798F\u4F2F\u4F60\u9084\u597D\u55CE?"
+  - guestN: 2
+    cardSpecies: 1
+    cardName: 12
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: "\u90A3\u4F60\u6709\u53BB\u627E\u674E\u53D4\u554F\u7576\u5929\u7684\u60C5\u6CC1\u55CE?"
+  myCardData:
+  - guestN: 1
+    cardSpecies: 2
+    cardName: 1
+    cardNameText: "\u91AC\u6CB9"
     cardImage: {fileID: 21300000, guid: aec05631a5065eb4f9ea6bc4fa0f3571, type: 3}
     needMoney: 0
     cardAmount: 10
     description: 
     cardText: 
   ShopData: []
-  cardObj: {fileID: 1431633503704876, guid: 087e7e966f89a674bb9c41ea52b7f413, type: 2}
+  cardObj: {fileID: 1385505650074734, guid: d352f82810851ac438294cbe31a4805e, type: 2}
+  _guestN: 0
+  _cardSpecies: 0
+  _cardName: 0
+  _cardNameText: 
+  _cardImage: {fileID: 0}
+  _needMoney: 0
+  _cardAmount: 0
+  _description: 
+  _cardText: 
+  _NewCardData:
+    guestN: 0
+    cardSpecies: 0
+    cardName: 0
+    cardNameText: 
+    cardImage: {fileID: 0}
+    needMoney: 0
+    cardAmount: 0
+    description: 
+    cardText: 
+  MinNumber: 0
+  MaxNumber: 0
+  newGuestName: 0
